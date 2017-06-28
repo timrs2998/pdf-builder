@@ -1,0 +1,6 @@
+language: java
+dist: trusty
+jdk:
+  - openjdk6
+  - openjdk7
+  - openjdk8
