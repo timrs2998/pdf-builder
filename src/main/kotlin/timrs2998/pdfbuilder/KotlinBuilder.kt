@@ -6,6 +6,9 @@ import org.apache.pdfbox.pdmodel.PDDocument
  * A DSL for Kotlin, Groovy or Java 8 consumers of this API.
  */
 
+@DslMarker
+annotation class DocumentMarker
+
 fun document(init: Document.() -> Unit): PDDocument {
     val document = Document()
     document.init()
@@ -13,8 +16,10 @@ fun document(init: Document.() -> Unit): PDDocument {
 }
 
 // Workaround for Groovy disliking kotlin default parameters
+@DocumentMarker
 fun Document.text(value: String) = this.text(value, {})
 
+@DocumentMarker
 fun Document.text(value: String, init: TextElement.() -> Unit = {}): TextElement {
     val textElement = TextElement(this, value)
     textElement.init()
@@ -22,6 +27,7 @@ fun Document.text(value: String, init: TextElement.() -> Unit = {}): TextElement
     return textElement
 }
 
+@DocumentMarker
 fun Document.table(init: TableElement.() -> Unit): TableElement {
     val tableElement = TableElement(this)
     tableElement.init()
@@ -29,6 +35,10 @@ fun Document.table(init: TableElement.() -> Unit): TableElement {
     return tableElement
 }
 
+@DslMarker
+annotation class TableMarker
+
+@TableMarker
 fun TableElement.header(init: RowElement.() -> Unit): RowElement {
     val rowElement = RowElement(this)
     rowElement.init()
@@ -36,6 +46,7 @@ fun TableElement.header(init: RowElement.() -> Unit): RowElement {
     return rowElement
 }
 
+@TableMarker
 fun TableElement.row(init: RowElement.() -> Unit): RowElement {
     val rowElement = RowElement(this)
     rowElement.init()
@@ -43,9 +54,14 @@ fun TableElement.row(init: RowElement.() -> Unit): RowElement {
     return rowElement
 }
 
+@DslMarker
+annotation class RowMarker
+
 // Workaround for Groovy disliking kotlin default parameters
+@RowMarker
 fun RowElement.text(value: String) = this.text(value, {})
 
+@RowMarker
 fun RowElement.text(value: String, init: TextElement.() -> Unit = {}): TextElement {
     val textElement = TextElement(this, value)
     textElement.init()

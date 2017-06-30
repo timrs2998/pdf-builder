@@ -51,23 +51,23 @@ abstract class Element(open val parent: Element?) {
             parent!!.document
         }
     }
-    protected val inheritedBackgroundColor: Color by lazy {
+    internal val inheritedBackgroundColor: Color by lazy {
         backgroundColor ?: parent?.inheritedBackgroundColor ?: FALLBACK_BACKGROUND_COLOR
     }
 
-    protected val inheritedFontColor: Color by lazy {
+    internal val inheritedFontColor: Color by lazy {
         fontColor ?: parent?.inheritedFontColor ?: FALLBACK_FONT_COLOR
     }
 
-    protected val inheritedFontSize: Float by lazy {
+    internal val inheritedFontSize: Float by lazy {
         fontSize ?: parent?.inheritedFontSize ?: FALLBACK_FONT_SIZE
     }
 
-    protected val inheritedHorizontalAlignment: Alignment by lazy {
+    internal val inheritedHorizontalAlignment: Alignment by lazy {
         horizontalAlignment ?: parent?.inheritedHorizontalAlignment ?: FALLBACK_HORIZONTAL_ALIGNMENT
     }
 
-    protected val inheritedPdFont: PDFont by lazy {
+    internal val inheritedPdFont: PDFont by lazy {
         pdFont ?: parent?.inheritedPdFont ?: FALLBACK_PD_FONT
     }
 
