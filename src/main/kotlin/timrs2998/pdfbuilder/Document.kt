@@ -4,6 +4,10 @@ import timrs2998.pdfbuilder.style.Orientation
 import org.apache.pdfbox.pdmodel.PDDocument
 import org.apache.pdfbox.pdmodel.common.PDRectangle
 
+/**
+ * Represents a pdf document. The document is the outer container for all
+ * elements belonging to a pdf. Once rendered, it cannot be modified.
+ */
 class Document : Element(null) {
 
     val children = mutableListOf<Element>()

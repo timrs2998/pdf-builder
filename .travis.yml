@@ -1,5 +1,6 @@
 language: java
 dist: trusty
+
 jdk:
 - openjdk8
 
@@ -11,12 +12,3 @@ cache:
   directories:
   - "$HOME/.gradle/caches/"
   - "$HOME/.gradle/wrapper/"
-
-deploy:
-  provider: releases
-  api_key:
-    secure: ZvpYrunlbXVNtPTP+274SsBKrrRDKfJD3S/X9EVceXDszUk6QnAJ/nQJhAErE0C7/3HJPNqVCEUeHQQ1l6i7BO5wibjZDl0IQaY7hM3RzCRstVRhw4R6ECeeLmkosNYY9Dot/xG31Z2cERa83Xk0dcH388vET29SJizYRw0TrbYUuF8PDP1r9e4/Ie3SJ5FZujOa5SWHpj8KrdkHDirGVargzqqAhQ/WPhc9Tq+NXrli8kt++7SZ55YwQGaqOx9sZcTdMLcX3ah134fNxMy0GwkFDA17z1uIYCvOwrCiWdIh3DDfupYCr3MZ3KVHShlu7hhrb9Ma6Qosi49HItB18MPNQKsook9K5tEcjhhIAb9Kp7AOtLHS4tzY34732V4HFjVc/LKgrPeSwXTN0sSrwSjnhrvAg/dkSe3ulg9ewwxDFvaLya6RRq6j687Z5hijukh1yK4HSa+ZOGbR1UHZYyBGPjRRcnP82ptHfEy7ZTI8/r3enphm/tRZGnJ6NH3fdWCzBFYuk+kG7rQ+Ytg2HdTxxe/aJWHao0R9JVB5J0rZw9W8FmhID0Cm/auL6b1XgXGzuC8fOZEaTFU2lUn/Y6EqptAtXVaT28Rc4snK6aWKM2K5rM6o5jZzS5sxV2jApWSCyotOuHsKJjH2TDKObgQ1kB/Acj1g5l7jScAMvkc=
-  file: build/libs/pdf-builder.jar
-  skip_cleanup: true
-  on:
-    repo: timrs2998/pdf-builder
