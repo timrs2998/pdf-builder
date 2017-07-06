@@ -1,8 +1,9 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)
 [![Build Status](https://travis-ci.org/timrs2998/pdf-builder.svg?branch=master)](https://travis-ci.org/timrs2998/pdf-builder)
-[ ![Download](https://api.bintray.com/packages/timrs2998/maven/pdf-builder/images/download.svg) ](https://bintray.com/timrs2998/pdf-builder/pdf-builder/_latestVersion)
+[![Download](https://api.bintray.com/packages/timrs2998/maven/pdf-builder/images/download.svg) ](https://bintray.com/timrs2998/maven/pdf-builder/_latestVersion)
 
 # pdf-builder
+
 PDF builder written in Kotlin with a statically typed DSL
 
 ## Usage
@@ -57,3 +58,17 @@ t2.setFontColor(new Color(1f, .1f, .1f));
 document.getChildren().add(t1);
 document.getChildren().add(t2);
 ```
+
+## Development Notes
+
+To build from source:
+
+```bash
+git clone git@github.com:timrs2998/pdf-builder.git
+cd pdf-builder/
+./gradlew build
+```
+
+To release a new version, use GitHub to create release tags in "v1.0.0" format.
+Travis will build and publish to Bintray provided that BINTRAY_USER and 
+BINTRAY_KEY are set.

@@ -9,6 +9,13 @@ import org.apache.pdfbox.pdmodel.PDDocument
 @DslMarker
 annotation class DocumentMarker
 
+/**
+ * Creates the outermost [Document] [element][Element] representing the pdf, and returns
+ * the rendered [PDDocument] that can be [saved][PDDocument.save] to a
+ * [java.io.File] or [java.io.OutputStream].
+ *
+ * @return The rendered [PDDocument].
+ */
 fun document(init: Document.() -> Unit): PDDocument {
     val document = Document()
     document.init()

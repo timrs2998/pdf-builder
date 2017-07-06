@@ -35,7 +35,10 @@ class Document : Element(null) {
         return children.fold(0.0f, { sum, row -> sum + row.height(width, startY) })
     }
 
-    /** Forces one-time evaluation of lazy properties and renders object model to a PDDocument */
+    /**
+     * Forces one-time evaluation of lazy properties and renders object model to
+     * a [PDDocument]. Once called, document can no longer be modified.
+     */
     fun render(): PDDocument {
         val pdDocument = PDDocument()
         render(pdDocument, 0f, pageWidth, 0f, 0f)

@@ -2,6 +2,12 @@ package timrs2998.pdfbuilder
 
 import org.apache.pdfbox.pdmodel.PDDocument
 
+/**
+ * A [TableElement] is a special container [element][Element] for
+ * [rows][RowElement]. Unlike other [elements][Element], a [table][TableElement]
+ * can span multiple pages and therfore handles rendering differently than
+ * other [elements][Element].
+ */
 class TableElement(override val parent: Document) : Element(parent) {
 
     /**

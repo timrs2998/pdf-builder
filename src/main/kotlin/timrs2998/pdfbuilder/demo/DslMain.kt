@@ -16,7 +16,7 @@ object DslMain {
 
     @JvmStatic
     fun main(args: Array<String>) {
-         document {
+        document {
 
             text("Hello")
 

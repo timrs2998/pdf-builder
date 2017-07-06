@@ -1,14 +1,31 @@
 package timrs2998.pdfbuilder
 
+import org.apache.pdfbox.pdmodel.PDDocument
+import org.apache.pdfbox.pdmodel.font.PDFont
+import org.apache.pdfbox.pdmodel.font.PDType1Font
 import timrs2998.pdfbuilder.style.Alignment
 import timrs2998.pdfbuilder.style.Border
 import timrs2998.pdfbuilder.style.Margin
 import timrs2998.pdfbuilder.style.Padding
-import org.apache.pdfbox.pdmodel.PDDocument
-import org.apache.pdfbox.pdmodel.font.PDFont
-import org.apache.pdfbox.pdmodel.font.PDType1Font
 import java.awt.Color
 
+/**
+ * Everything belonging to a [Document] extends from [Element], including
+ * [Document] itself. An [Element] knows its [height][Element.height] and how
+ * to [render][Element.render] itself.
+ *
+ * Unless overridden, the default implementations of [render] and [height]
+ * assume that the [element][Element] will not span multiple pages and must fit
+ * on a single page. The [TableElement] is an example of an [element][Element]
+ * that overrides these methods to span multiple pages.
+ *
+ * An [Element] can be styled similar to CSS, being assigned a [border],
+ * [margin], [padding], [backgroundColor], [fontColor], [fontSize],
+ * [horizontalAlignment], and [pdFont].
+ *
+ * Most styles will "cascade" or be inherited by children. The only styles
+ * that are not inherited are [border], [margin], and [padding].
+ */
 abstract class Element(open val parent: Element?) {
 
     companion object {
@@ -100,7 +117,7 @@ abstract class Element(open val parent: Element?) {
     /**
      * Renders the entire element including margins, padding, borders, and background. Unless
      * overridden, assumes the element being rendered will fit on the page. Multi-page elements
-     * (ie: TableElement) must handle paging themselves.
+     * (ie: [TableElement]) must handle paging themselves.
      */
     open fun render(
             pdDocument: PDDocument,
