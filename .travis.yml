@@ -13,4 +13,4 @@ cache:
   - "$HOME/.gradle/caches/"
   - "$HOME/.gradle/wrapper/"
 
-script: "./travis-build.sh"
+script: "./.travis-build.sh"
