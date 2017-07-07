@@ -1,4 +1,4 @@
-package timrs2998.pdfbuilder
+package com.github.timrs2998.pdfbuilder
 
 import org.jetbrains.spek.api.Spek
 import org.jetbrains.spek.api.dsl.given
@@ -21,8 +21,8 @@ class TextElementSpec: Spek({
     }
 
     it("should wrap text on word boundaries") {
-        assert(TextElement(Document(), "Hello, world!").wrapText(100f) == listOf("Hello, world!"))
-        assert(TextElement(Document(), "Hello, world!").wrapText(50f) == listOf("Hello,", "world!"))
+        assert(TextElement(com.github.timrs2998.pdfbuilder.Document(), "Hello, world!").wrapText(100f) == listOf("Hello, world!"))
+        assert(TextElement(com.github.timrs2998.pdfbuilder.Document(), "Hello, world!").wrapText(50f) == listOf("Hello,", "world!"))
     }
 
 })

@@ -1,6 +1,6 @@
-package timrs2998.pdfbuilder
+package com.github.timrs2998.pdfbuilder
 
-import timrs2998.pdfbuilder.style.Orientation
+import com.github.timrs2998.pdfbuilder.style.Orientation
 import org.apache.pdfbox.pdmodel.PDDocument
 import org.apache.pdfbox.pdmodel.common.PDRectangle
 
@@ -8,11 +8,11 @@ import org.apache.pdfbox.pdmodel.common.PDRectangle
  * Represents a pdf document. The document is the outer container for all
  * elements belonging to a pdf. Once rendered, it cannot be modified.
  */
-class Document : Element(null) {
+class Document : com.github.timrs2998.pdfbuilder.Element(null) {
 
-    val children = mutableListOf<Element>()
+    val children = mutableListOf<com.github.timrs2998.pdfbuilder.Element>()
 
-    var footerFactory: (page: Int, totalPages: Int) -> Element? = { page, totalPages -> null }
+    var footerFactory: (page: Int, totalPages: Int) -> com.github.timrs2998.pdfbuilder.Element? = { page, totalPages -> null }
 
     var orientation: Orientation = Orientation.PORTRAIT
 
@@ -54,7 +54,7 @@ class Document : Element(null) {
         children.fold(startY) { startY, child ->
             // Handle paging unless child is table (tables handle page conflicts by row)
             val adjustedStartY = when (child) {
-                is TableElement -> startY
+                is com.github.timrs2998.pdfbuilder.TableElement -> startY
                 else -> adjustStartYForPaging(startY, startY + child.height(endX - startX, startY))
             }
             child.render(pdDocument, startX, endX, adjustedStartY)
@@ -86,8 +86,8 @@ class Document : Element(null) {
 
         if (startY.insideBottomMargin()
                 || endY.insideBottomMargin()
-                || getPageIndex(pageHeight, startY) != getPageIndex(pageHeight, endY)) {
-            return (getPageIndex(pageHeight, startY)+1) * pageHeight + margin.top
+                || com.github.timrs2998.pdfbuilder.getPageIndex(pageHeight, startY) != com.github.timrs2998.pdfbuilder.getPageIndex(pageHeight, endY)) {
+            return (com.github.timrs2998.pdfbuilder.getPageIndex(pageHeight, startY) +1) * pageHeight + margin.top
         }
         return startY
     }

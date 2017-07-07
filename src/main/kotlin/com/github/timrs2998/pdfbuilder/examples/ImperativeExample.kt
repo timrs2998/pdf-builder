@@ -1,22 +1,21 @@
-package timrs2998.pdfbuilder.demo
+package com.github.timrs2998.pdfbuilder.examples
 
-import timrs2998.pdfbuilder.Document
-import timrs2998.pdfbuilder.RowElement
-import timrs2998.pdfbuilder.TableElement
-import timrs2998.pdfbuilder.TextElement
-import timrs2998.pdfbuilder.style.Alignment
-import timrs2998.pdfbuilder.style.Border
+import com.github.timrs2998.pdfbuilder.RowElement
+import com.github.timrs2998.pdfbuilder.TableElement
+import com.github.timrs2998.pdfbuilder.TextElement
+import com.github.timrs2998.pdfbuilder.style.Alignment
+import com.github.timrs2998.pdfbuilder.style.Border
 import java.awt.Color
 
 /**
  * Class containing main method demonstrate creation of a sample "output.pdf"
  * in an imperative, Java style.
  */
-object Main {
+object ImperativeExample {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        val document = Document()
+        val document = com.github.timrs2998.pdfbuilder.Document()
 
         val initialText = TextElement(document)
         initialText.fontColor = Color(1f, .1f, .1f)

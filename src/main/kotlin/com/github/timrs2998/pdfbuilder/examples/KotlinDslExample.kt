@@ -1,10 +1,10 @@
-package timrs2998.pdfbuilder.demo
+package com.github.timrs2998.pdfbuilder.examples
 
-import timrs2998.pdfbuilder.document
-import timrs2998.pdfbuilder.row
-import timrs2998.pdfbuilder.style.Border
-import timrs2998.pdfbuilder.table
-import timrs2998.pdfbuilder.text
+import com.github.timrs2998.pdfbuilder.document
+import com.github.timrs2998.pdfbuilder.row
+import com.github.timrs2998.pdfbuilder.style.Border
+import com.github.timrs2998.pdfbuilder.table
+import com.github.timrs2998.pdfbuilder.text
 import java.awt.Color
 
 /**
@@ -12,7 +12,7 @@ import java.awt.Color
  * using a Kotlin-specific DSL. This approach is more declarative, but is less
  * portable between languages.
  */
-object DslMain {
+object KotlinDslExample {
 
     @JvmStatic
     fun main(args: Array<String>) {

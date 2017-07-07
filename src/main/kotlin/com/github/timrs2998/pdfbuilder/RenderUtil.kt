@@ -1,6 +1,6 @@
-package timrs2998.pdfbuilder
+package com.github.timrs2998.pdfbuilder
 
-import timrs2998.pdfbuilder.style.Orientation
+import com.github.timrs2998.pdfbuilder.style.Orientation
 import org.apache.pdfbox.pdmodel.PDDocument
 import org.apache.pdfbox.pdmodel.PDPage
 import org.apache.pdfbox.pdmodel.PDPageContentStream
@@ -14,7 +14,7 @@ import java.awt.Color
  * not cross page boundaries.
  */
 fun drawLine(
-        document: Document,
+        document: com.github.timrs2998.pdfbuilder.Document,
         pdDocument: PDDocument,
         startX: Float,
         startY: Float,
@@ -44,7 +44,7 @@ fun drawLine(
  * not cross page boundaries.
  */
 fun drawBox(
-        document: Document,
+        document: com.github.timrs2998.pdfbuilder.Document,
         pdDocument: PDDocument,
         startX: Float,
         endX: Float,
@@ -85,7 +85,7 @@ fun getPageIndex(pageHeight: Float, y: Float): Int {
 /**
  * Safely gets (or creates) the page containing endY
  */
-fun getPage(document: Document, pdDocument: PDDocument, endY: Float): PDPage {
+fun getPage(document: com.github.timrs2998.pdfbuilder.Document, pdDocument: PDDocument, endY: Float): PDPage {
     val pageNumber: Int = getPageIndex(document.pageHeight, endY)
     var pdPage: PDPage? = pdDocument.pages.elementAtOrNull(pageNumber)
     if (pdPage == null) {
@@ -106,7 +106,7 @@ fun getPage(document: Document, pdDocument: PDDocument, endY: Float): PDPage {
  * Transforms endY from pdf-builder space to Apache pdf-box space (relative
  * to bottom of current page).
  */
-fun transformY(document: Document, y: Float): Float {
+fun transformY(document: com.github.timrs2998.pdfbuilder.Document, y: Float): Float {
     return document.pageHeight - (y - document.pageHeight * getPageIndex(document.pageHeight, y))
 }
 

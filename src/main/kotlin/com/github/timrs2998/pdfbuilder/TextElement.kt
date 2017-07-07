@@ -1,11 +1,11 @@
-package timrs2998.pdfbuilder
+package com.github.timrs2998.pdfbuilder
 
-import timrs2998.pdfbuilder.style.Alignment
+import com.github.timrs2998.pdfbuilder.style.Alignment
 import org.apache.pdfbox.pdmodel.PDDocument
 import org.apache.pdfbox.pdmodel.PDPageContentStream
 import org.apache.pdfbox.pdmodel.PDPageContentStream.AppendMode.APPEND
 
-class TextElement(parent: Element, val value: String = "Hello, world!") : Element(parent) {
+class TextElement(parent: com.github.timrs2998.pdfbuilder.Element, val value: String = "Hello, world!") : com.github.timrs2998.pdfbuilder.Element(parent) {
 
     override fun instanceHeight(width: Float, startY: Float): Float {
         return fontHeight * wrapText(width).size

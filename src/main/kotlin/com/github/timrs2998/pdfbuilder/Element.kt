@@ -1,12 +1,12 @@
-package timrs2998.pdfbuilder
+package com.github.timrs2998.pdfbuilder
 
+import com.github.timrs2998.pdfbuilder.style.Alignment
+import com.github.timrs2998.pdfbuilder.style.Border
+import com.github.timrs2998.pdfbuilder.style.Margin
+import com.github.timrs2998.pdfbuilder.style.Padding
 import org.apache.pdfbox.pdmodel.PDDocument
 import org.apache.pdfbox.pdmodel.font.PDFont
 import org.apache.pdfbox.pdmodel.font.PDType1Font
-import timrs2998.pdfbuilder.style.Alignment
-import timrs2998.pdfbuilder.style.Border
-import timrs2998.pdfbuilder.style.Margin
-import timrs2998.pdfbuilder.style.Padding
 import java.awt.Color
 
 /**
@@ -26,7 +26,7 @@ import java.awt.Color
  * Most styles will "cascade" or be inherited by children. The only styles
  * that are not inherited are [border], [margin], and [padding].
  */
-abstract class Element(open val parent: Element?) {
+abstract class Element(open val parent: com.github.timrs2998.pdfbuilder.Element?) {
 
     companion object {
         @JvmStatic
@@ -61,31 +61,31 @@ abstract class Element(open val parent: Element?) {
     /** Properties lazily inherited during rendering ******************************************************************/
     /******************************************************************************************************************/
 
-    protected val document: Document by lazy {
-        if (this is Document) {
+    protected val document: com.github.timrs2998.pdfbuilder.Document by lazy {
+        if (this is com.github.timrs2998.pdfbuilder.Document) {
             this
         } else {
             parent!!.document
         }
     }
     internal val inheritedBackgroundColor: Color by lazy {
-        backgroundColor ?: parent?.inheritedBackgroundColor ?: FALLBACK_BACKGROUND_COLOR
+        backgroundColor ?: parent?.inheritedBackgroundColor ?: com.github.timrs2998.pdfbuilder.Element.Companion.FALLBACK_BACKGROUND_COLOR
     }
 
     internal val inheritedFontColor: Color by lazy {
-        fontColor ?: parent?.inheritedFontColor ?: FALLBACK_FONT_COLOR
+        fontColor ?: parent?.inheritedFontColor ?: com.github.timrs2998.pdfbuilder.Element.Companion.FALLBACK_FONT_COLOR
     }
 
     internal val inheritedFontSize: Float by lazy {
-        fontSize ?: parent?.inheritedFontSize ?: FALLBACK_FONT_SIZE
+        fontSize ?: parent?.inheritedFontSize ?: com.github.timrs2998.pdfbuilder.Element.Companion.FALLBACK_FONT_SIZE
     }
 
     internal val inheritedHorizontalAlignment: Alignment by lazy {
-        horizontalAlignment ?: parent?.inheritedHorizontalAlignment ?: FALLBACK_HORIZONTAL_ALIGNMENT
+        horizontalAlignment ?: parent?.inheritedHorizontalAlignment ?: com.github.timrs2998.pdfbuilder.Element.Companion.FALLBACK_HORIZONTAL_ALIGNMENT
     }
 
     internal val inheritedPdFont: PDFont by lazy {
-        pdFont ?: parent?.inheritedPdFont ?: FALLBACK_PD_FONT
+        pdFont ?: parent?.inheritedPdFont ?: com.github.timrs2998.pdfbuilder.Element.Companion.FALLBACK_PD_FONT
     }
 
     /******************************************************************************************************************/
@@ -146,7 +146,7 @@ abstract class Element(open val parent: Element?) {
                 startY = startY + margin.top,
                 endY = startY + margin.top + Math.max(minHeight, padding.top + height + padding.bottom)
         )
-        drawBox(
+        com.github.timrs2998.pdfbuilder.drawBox(
                 document,
                 pdDocument,
                 startX = startX + margin.left,

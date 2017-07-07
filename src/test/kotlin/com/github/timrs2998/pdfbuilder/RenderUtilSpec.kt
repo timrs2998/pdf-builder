@@ -1,4 +1,4 @@
-package timrs2998.pdfbuilder
+package com.github.timrs2998.pdfbuilder
 
 import org.jetbrains.spek.api.Spek
 import org.jetbrains.spek.api.dsl.on

@@ -1,4 +1,4 @@
-package timrs2998.pdfbuilder
+package com.github.timrs2998.pdfbuilder
 
 import org.apache.pdfbox.pdmodel.PDDocument
 
@@ -8,7 +8,7 @@ import org.apache.pdfbox.pdmodel.PDDocument
  * can span multiple pages and therfore handles rendering differently than
  * other [elements][Element].
  */
-class TableElement(override val parent: Document) : Element(parent) {
+class TableElement(override val parent: com.github.timrs2998.pdfbuilder.Document) : com.github.timrs2998.pdfbuilder.Element(parent) {
 
     /**
      * A sticky header that will be repeated on top of each page.

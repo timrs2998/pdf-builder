@@ -1,4 +1,4 @@
-package timrs2998.pdfbuilder
+package com.github.timrs2998.pdfbuilder
 
 import org.jetbrains.spek.api.Spek
 import org.jetbrains.spek.api.dsl.given
@@ -12,7 +12,7 @@ import java.io.ByteArrayOutputStream
 class DocumentSpec: Spek({
 
     given("new document") {
-        val document = Document()
+        val document = com.github.timrs2998.pdfbuilder.Document()
 
         it("should be empty") {
             assert(document.children.isEmpty())
@@ -30,7 +30,7 @@ class DocumentSpec: Spek({
     }
 
     given("empty document") {
-        val document = Document()
+        val document = com.github.timrs2998.pdfbuilder.Document()
 
         on("render") {
             val pdDocument = document.render()

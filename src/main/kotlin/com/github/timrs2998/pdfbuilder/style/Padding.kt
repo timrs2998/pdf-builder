@@ -1,4 +1,4 @@
-package timrs2998.pdfbuilder.style
+package com.github.timrs2998.pdfbuilder.style
 
 data class Padding(
         val top: Float = 0f,
