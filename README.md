@@ -4,11 +4,11 @@
 
 # pdf-builder
 
-PDF builder written in Kotlin with a statically typed DSL. Inspired by Craig's [document-builder](https://github.com/craigburke/document-builder) library.
+PDF builder written in [Kotlin](https://kotlinlang.org/) with a [statically typed](https://en.wikipedia.org/wiki/Type_system#Static_type_checking) [DSL](https://en.wikipedia.org/wiki/Domain-specific_language). Inspired by Craig's [document-builder](https://github.com/craigburke/document-builder) library.
 
 ## Usage
 
-Include the following in your build.gradle:
+Include the following in your [build.gradle](https://docs.gradle.org/current/userguide/userguide_single.html):
 
 ```groovy
 repositories {
@@ -68,5 +68,5 @@ cd pdf-builder/
 ```
 
 To release a new version, use GitHub to create release tags in "v1.0.0" format.
-Travis will build and publish to Bintray provided that BINTRAY_USER and 
-BINTRAY_KEY are set.
+Travis will build and publish to Bintray provided that the BINTRAY_USER and 
+BINTRAY_KEY environment variables are set.
