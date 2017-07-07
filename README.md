@@ -12,9 +12,7 @@ Include the following in your build.gradle:
 
 ```groovy
 repositories {
-    maven {
-        url  "http://dl.bintray.com/timrs2998/maven" 
-    }
+    jcenter()
 }
 
 dependencies {
