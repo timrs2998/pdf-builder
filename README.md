@@ -4,7 +4,7 @@
 
 # pdf-builder
 
-PDF builder written in Kotlin with a statically typed DSL
+PDF builder written in Kotlin with a statically typed DSL. Inspired by Craig's [document-builder](https://github.com/craigburke/document-builder) library.
 
 ## Usage
 
