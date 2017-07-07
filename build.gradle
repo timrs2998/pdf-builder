@@ -1,9 +1,9 @@
 buildscript {
     repositories { jcenter() }
     dependencies {
-        classpath 'com.netflix.nebula:nebula-bintray-plugin:3.5.2'
-        classpath 'com.netflix.nebula:nebula-publishing-plugin:5.1.0'
-        classpath 'com.netflix.nebula:nebula-release-plugin:4.2.0'
+        classpath "com.netflix.nebula:nebula-bintray-plugin:$nebula_bintray_plugin_version"
+        classpath "com.netflix.nebula:nebula-publishing-plugin:$nebula_publishing_plugin_version"
+        classpath "com.netflix.nebula:nebula-release-plugin:$nebula_release_plugin_version"
         classpath "org.jetbrains.dokka:dokka-gradle-plugin:$dokka_version"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
@@ -22,9 +22,13 @@ apply plugin: 'org.jetbrains.dokka'
 group 'com.github.timrs2998'
 description = 'PDF builder written in Kotlin with a statically typed DSL'
 
+// Read from environment variables instead of gradle properties
+if (!project.properties['bintrayUser']) {
+    project.properties['bintrayUser'] = System.getenv('BINTRAY_USER')
+    project.properties['bintrayKey'] = System.getenv('BINTRAY_KEY')
+}
+
 bintray {
-    user = System.getenv('BINTRAY_USER')
-    key = System.getenv('BINTRAY_KEY')
     pkg {
         repo = 'maven'
         userOrg = 'timrs2998'
