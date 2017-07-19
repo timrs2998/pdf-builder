@@ -13,12 +13,15 @@ cache:
   - "$HOME/.gradle/caches/"
   - "$HOME/.gradle/wrapper/"
 
-script: "./.travis-build.sh"
+script: 
+- "./.travis-build.sh"
+- "./gradlew dokka"
 
 deploy:
   provider: pages
   skip_cleanup: true
   github_token: $GITHUB_TOKEN
+  local_dir: build/javadoc
   on:
     branch: master
 
