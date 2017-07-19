@@ -70,3 +70,5 @@ cd pdf-builder/
 To release a new version, use GitHub to create release tags in "v1.0.0" format.
 Travis will build and publish to Bintray provided that the BINTRAY_USER and 
 BINTRAY_KEY environment variables are set.
+
+Travis also needs a personal access token for GitHub provided through the GITHUB_TOKEN environment variable to update GitHub pages.

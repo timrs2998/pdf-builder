@@ -14,3 +14,11 @@ cache:
   - "$HOME/.gradle/wrapper/"
 
 script: "./.travis-build.sh"
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  on:
+    branch: master
+
