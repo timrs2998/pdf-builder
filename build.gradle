@@ -52,11 +52,13 @@ dependencies {
 dokka {
     outputFormat = 'html'
     outputDirectory = "$buildDir/javadoc"
+    jdkVersion = 6
     linkMapping {
         dir = "src/main/kotlin"
         url = "https://github.com/timrs2998/pdf-builder/blob/master/src/main/kotlin"
         suffix = "#L"
     }
+    moduleName = ''
 }
 tasks.javadoc.dependsOn tasks.dokka
 
