@@ -1,3 +1,5 @@
+import org.gradle.api.tasks.wrapper.Wrapper.DistributionType
+
 buildscript {
     repositories { jcenter() }
     dependencies {
@@ -62,6 +64,13 @@ dokka {
 }
 tasks.javadoc.dependsOn tasks.dokka
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '4.0'
+
+tasks.withType(AbstractArchiveTask) {
+    preserveFileTimestamps = false
+    reproducibleFileOrder = true
+}
+
+wrapper {
+    distributionType = DistributionType.ALL
+    gradleVersion = '4.1'
 }
