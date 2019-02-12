@@ -16,7 +16,7 @@ repositories {
 }
 
 dependencies {
-    compile 'com.github.timrs2998:pdf-builder:<latest version>'
+    implementation 'com.github.timrs2998:pdf-builder:<latest version>'
 }
 ```
 
