@@ -26,7 +26,7 @@ import java.awt.Color
  * Most styles will "cascade" or be inherited by children. The only styles
  * that are not inherited are [border], [margin], and [padding].
  */
-abstract class Element(open val parent: com.github.timrs2998.pdfbuilder.Element?) {
+abstract class Element(open val parent: Element?) {
 
     companion object {
         @JvmStatic
@@ -61,31 +61,31 @@ abstract class Element(open val parent: com.github.timrs2998.pdfbuilder.Element?
     /** Properties lazily inherited during rendering ******************************************************************/
     /******************************************************************************************************************/
 
-    protected val document: com.github.timrs2998.pdfbuilder.Document by lazy {
-        if (this is com.github.timrs2998.pdfbuilder.Document) {
+    protected val document: Document by lazy {
+        if (this is Document) {
             this
         } else {
             parent!!.document
         }
     }
     internal val inheritedBackgroundColor: Color by lazy {
-        backgroundColor ?: parent?.inheritedBackgroundColor ?: com.github.timrs2998.pdfbuilder.Element.Companion.FALLBACK_BACKGROUND_COLOR
+        backgroundColor ?: parent?.inheritedBackgroundColor ?: FALLBACK_BACKGROUND_COLOR
     }
 
     internal val inheritedFontColor: Color by lazy {
-        fontColor ?: parent?.inheritedFontColor ?: com.github.timrs2998.pdfbuilder.Element.Companion.FALLBACK_FONT_COLOR
+        fontColor ?: parent?.inheritedFontColor ?: FALLBACK_FONT_COLOR
     }
 
     internal val inheritedFontSize: Float by lazy {
-        fontSize ?: parent?.inheritedFontSize ?: com.github.timrs2998.pdfbuilder.Element.Companion.FALLBACK_FONT_SIZE
+        fontSize ?: parent?.inheritedFontSize ?: FALLBACK_FONT_SIZE
     }
 
     internal val inheritedHorizontalAlignment: Alignment by lazy {
-        horizontalAlignment ?: parent?.inheritedHorizontalAlignment ?: com.github.timrs2998.pdfbuilder.Element.Companion.FALLBACK_HORIZONTAL_ALIGNMENT
+        horizontalAlignment ?: parent?.inheritedHorizontalAlignment ?: FALLBACK_HORIZONTAL_ALIGNMENT
     }
 
     internal val inheritedPdFont: PDFont by lazy {
-        pdFont ?: parent?.inheritedPdFont ?: com.github.timrs2998.pdfbuilder.Element.Companion.FALLBACK_PD_FONT
+        pdFont ?: parent?.inheritedPdFont ?: FALLBACK_PD_FONT
     }
 
     /******************************************************************************************************************/
@@ -146,7 +146,7 @@ abstract class Element(open val parent: com.github.timrs2998.pdfbuilder.Element?
                 startY = startY + margin.top,
                 endY = startY + margin.top + Math.max(minHeight, padding.top + height + padding.bottom)
         )
-        com.github.timrs2998.pdfbuilder.drawBox(
+        drawBox(
                 document,
                 pdDocument,
                 startX = startX + margin.left,

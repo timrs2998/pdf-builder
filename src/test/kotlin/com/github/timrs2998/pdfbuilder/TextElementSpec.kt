@@ -1,28 +1,29 @@
 package com.github.timrs2998.pdfbuilder
 
-import org.jetbrains.spek.api.Spek
-import org.jetbrains.spek.api.dsl.given
-import org.jetbrains.spek.api.dsl.it
-import org.junit.platform.runner.JUnitPlatform
-import org.junit.runner.RunWith
+import org.spekframework.spek2.Spek
+import org.spekframework.spek2.style.gherkin.Feature
 import java.io.ByteArrayOutputStream
 
-@RunWith(JUnitPlatform::class)
-class TextElementSpec: Spek({
+object TextElementSpec: Spek({
 
-    given("document with text element") {
-        val pdDocument = document { text("Hello, world!") }
+    Feature("text element") {
 
-        it("should save pdf") {
-            ByteArrayOutputStream().use { os ->
-                pdDocument.save(os)
+        Scenario("document with text element") {
+            val pdDocument = document { text("Hello, world!") }
+
+            Then("should save pdf") {
+                ByteArrayOutputStream().use { os ->
+                    pdDocument.save(os)
+                }
             }
         }
-    }
 
-    it("should wrap text on word boundaries") {
-        assert(TextElement(com.github.timrs2998.pdfbuilder.Document(), "Hello, world!").wrapText(100f) == listOf("Hello, world!"))
-        assert(TextElement(com.github.timrs2998.pdfbuilder.Document(), "Hello, world!").wrapText(50f) == listOf("Hello,", "world!"))
+        Scenario("word boundaries") {
+            Then("should wrap text on word boundaries") {
+                assert(TextElement(com.github.timrs2998.pdfbuilder.Document(), "Hello, world!").wrapText(100f) == listOf("Hello, world!"))
+                assert(TextElement(com.github.timrs2998.pdfbuilder.Document(), "Hello, world!").wrapText(50f) == listOf("Hello,", "world!"))
+            }
+        }
     }
 
 })

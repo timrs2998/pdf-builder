@@ -14,7 +14,7 @@ import java.awt.Color
  * not cross page boundaries.
  */
 fun drawLine(
-        document: com.github.timrs2998.pdfbuilder.Document,
+        document: Document,
         pdDocument: PDDocument,
         startX: Float,
         startY: Float,
@@ -44,7 +44,7 @@ fun drawLine(
  * not cross page boundaries.
  */
 fun drawBox(
-        document: com.github.timrs2998.pdfbuilder.Document,
+        document: Document,
         pdDocument: PDDocument,
         startX: Float,
         endX: Float,
@@ -85,7 +85,7 @@ fun getPageIndex(pageHeight: Float, y: Float): Int {
 /**
  * Safely gets (or creates) the page containing endY
  */
-fun getPage(document: com.github.timrs2998.pdfbuilder.Document, pdDocument: PDDocument, endY: Float): PDPage {
+fun getPage(document: Document, pdDocument: PDDocument, endY: Float): PDPage {
     val pageNumber: Int = getPageIndex(document.pageHeight, endY)
     var pdPage: PDPage? = pdDocument.pages.elementAtOrNull(pageNumber)
     if (pdPage == null) {
@@ -106,7 +106,7 @@ fun getPage(document: com.github.timrs2998.pdfbuilder.Document, pdDocument: PDDo
  * Transforms endY from pdf-builder space to Apache pdf-box space (relative
  * to bottom of current page).
  */
-fun transformY(document: com.github.timrs2998.pdfbuilder.Document, y: Float): Float {
+fun transformY(document: Document, y: Float): Float {
     return document.pageHeight - (y - document.pageHeight * getPageIndex(document.pageHeight, y))
 }
 

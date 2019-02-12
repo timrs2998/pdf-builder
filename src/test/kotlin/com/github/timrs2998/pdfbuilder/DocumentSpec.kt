@@ -1,41 +1,41 @@
 package com.github.timrs2998.pdfbuilder
 
-import org.jetbrains.spek.api.Spek
-import org.jetbrains.spek.api.dsl.given
-import org.jetbrains.spek.api.dsl.it
-import org.jetbrains.spek.api.dsl.on
-import org.junit.platform.runner.JUnitPlatform
-import org.junit.runner.RunWith
+import org.apache.pdfbox.pdmodel.PDDocument
+import org.spekframework.spek2.style.gherkin.Feature
+import org.spekframework.spek2.Spek
 import java.io.ByteArrayOutputStream
 
-@RunWith(JUnitPlatform::class)
-class DocumentSpec: Spek({
+object DocumentSpec: Spek({
 
-    given("new document") {
-        val document = com.github.timrs2998.pdfbuilder.Document()
+    Feature("Document") {
 
-        it("should be empty") {
-            assert(document.children.isEmpty())
-            assert(document.backgroundColor == null)
-            assert(document.fontColor == null)
-            assert(document.fontSize == null)
-            assert(document.horizontalAlignment == null)
-            assert(document.pdFont == null)
-            document.inheritedBackgroundColor
-            document.inheritedFontColor
-            document.inheritedFontSize
-            document.inheritedHorizontalAlignment
-            document.inheritedPdFont
+        Scenario("new document") {
+            val document = Document()
+
+            Then("should be empty") {
+                assert(document.children.isEmpty())
+                assert(document.backgroundColor == null)
+                assert(document.fontColor == null)
+                assert(document.fontSize == null)
+                assert(document.horizontalAlignment == null)
+                assert(document.pdFont == null)
+                document.inheritedBackgroundColor
+                document.inheritedFontColor
+                document.inheritedFontSize
+                document.inheritedHorizontalAlignment
+                document.inheritedPdFont
+            }
         }
-    }
 
-    given("empty document") {
-        val document = com.github.timrs2998.pdfbuilder.Document()
+        Scenario("empty document") {
+            val document = Document()
+            lateinit var pdDocument: PDDocument
 
-        on("render") {
-            val pdDocument = document.render()
+            When("render") {
+                pdDocument = document.render()
+            }
 
-            it("should save to pdf") {
+            Then("should save to pdf") {
                 ByteArrayOutputStream().use { os ->
                     pdDocument.save(os)
                 }

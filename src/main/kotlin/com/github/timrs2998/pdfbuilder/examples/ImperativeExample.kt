@@ -1,5 +1,6 @@
 package com.github.timrs2998.pdfbuilder.examples
 
+import com.github.timrs2998.pdfbuilder.Document
 import com.github.timrs2998.pdfbuilder.RowElement
 import com.github.timrs2998.pdfbuilder.TableElement
 import com.github.timrs2998.pdfbuilder.TextElement
@@ -15,7 +16,7 @@ object ImperativeExample {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        val document = com.github.timrs2998.pdfbuilder.Document()
+        val document = Document()
 
         val initialText = TextElement(document)
         initialText.fontColor = Color(1f, .1f, .1f)

@@ -16,18 +16,18 @@ annotation class DocumentMarker
  *
  * @return The rendered [PDDocument].
  */
-fun document(init: com.github.timrs2998.pdfbuilder.Document.() -> Unit): PDDocument {
-    val document = com.github.timrs2998.pdfbuilder.Document()
+fun document(init: Document.() -> Unit): PDDocument {
+    val document = Document()
     document.init()
     return document.render()
 }
 
 // Workaround for Groovy disliking kotlin default parameters
 @DocumentMarker
-fun com.github.timrs2998.pdfbuilder.Document.text(value: String) = this.text(value, {})
+fun Document.text(value: String) = this.text(value, {})
 
 @DocumentMarker
-fun com.github.timrs2998.pdfbuilder.Document.text(value: String, init: TextElement.() -> Unit = {}): TextElement {
+fun Document.text(value: String, init: TextElement.() -> Unit = {}): TextElement {
     val textElement = TextElement(this, value)
     textElement.init()
     this.children.add(textElement)
@@ -35,7 +35,7 @@ fun com.github.timrs2998.pdfbuilder.Document.text(value: String, init: TextEleme
 }
 
 @DocumentMarker
-fun com.github.timrs2998.pdfbuilder.Document.table(init: TableElement.() -> Unit): TableElement {
+fun Document.table(init: TableElement.() -> Unit): TableElement {
     val tableElement = TableElement(this)
     tableElement.init()
     this.children.add(tableElement)

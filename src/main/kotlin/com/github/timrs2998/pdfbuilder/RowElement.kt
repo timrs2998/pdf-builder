@@ -2,7 +2,7 @@ package com.github.timrs2998.pdfbuilder
 
 import org.apache.pdfbox.pdmodel.PDDocument
 
-class RowElement(override val parent: TableElement) : com.github.timrs2998.pdfbuilder.Element(parent) {
+class RowElement(override val parent: TableElement) : Element(parent) {
 
     val columns = mutableListOf<TextElement>()
 

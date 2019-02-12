@@ -8,7 +8,7 @@ import org.apache.pdfbox.pdmodel.PDDocument
  * can span multiple pages and therfore handles rendering differently than
  * other [elements][Element].
  */
-class TableElement(override val parent: com.github.timrs2998.pdfbuilder.Document) : com.github.timrs2998.pdfbuilder.Element(parent) {
+class TableElement(override val parent: Document) : Element(parent) {
 
     /**
      * A sticky header that will be repeated on top of each page.
@@ -18,8 +18,24 @@ class TableElement(override val parent: com.github.timrs2998.pdfbuilder.Document
     val rows = mutableListOf<RowElement>()
 
     override fun instanceHeight(width: Float, startY: Float): Float {
-        // TODO: use 'startY' parameter to determine actual height, including sticky headers
-        return (header?.height(width, startY) ?: 0f) + rows.fold(0.0f, { sum, row -> sum + row.height(width, startY) })
+//        return (header?.height(width, startY) ?: 0f) + rows.fold(0.0f, { sum, row -> sum + row.height(width, startY) })
+        var currentY = startY
+        var i = 0
+        while (i < rows.size) {
+            var row = rows[i]
+            var height = row.height(width, currentY)
+            val adjustedStartY = parent.adjustStartYForPaging(currentY, currentY + height)
+
+            // Add sticky header to top of page, if necessary
+            if (currentY != adjustedStartY && header != null) {
+                row = header!!
+                height = row.height(width, adjustedStartY)
+                i -= 1
+            }
+            currentY = adjustedStartY + height
+            i += 1
+        }
+        return currentY
     }
 
     // Since table may span multiple pages, breaking on rows, renderInstance() must handle border, background, ..
@@ -40,7 +56,7 @@ class TableElement(override val parent: com.github.timrs2998.pdfbuilder.Document
             minHeight: Float) {
         var currentY = startY
         // Shadow existing list with a list containing sticky headers
-        var rows: MutableList<RowElement> = if (header == null) rows else (mutableListOf(header!!) + rows).toMutableList()
+        val rows: MutableList<RowElement> = if (header == null) rows else (mutableListOf(header!!) + rows).toMutableList()
         var i = 0
         while (i < rows.size) {
             var row = rows[i]
@@ -50,7 +66,7 @@ class TableElement(override val parent: com.github.timrs2998.pdfbuilder.Document
             // Add sticky header to top of page, if necessary
             if (currentY != adjustedStartY && header != null) {
                 row = header!!
-                height = row.height(endX - startY, adjustedStartY)
+                height = row.height(endX - startX, adjustedStartY)
                 i -= 1
             }
 

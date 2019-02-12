@@ -7,4 +7,5 @@
 bin/
 build/
 docs/
+out/
 output.pdf
