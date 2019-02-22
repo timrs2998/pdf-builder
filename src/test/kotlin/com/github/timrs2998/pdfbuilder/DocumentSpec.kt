@@ -7,40 +7,40 @@ import java.io.ByteArrayOutputStream
 
 object DocumentSpec: Spek({
 
-    Feature("Document") {
+  Feature("Document") {
 
-        Scenario("new document") {
-            val document = Document()
+    Scenario("new document") {
+      val document = Document()
 
-            Then("should be empty") {
-                assert(document.children.isEmpty())
-                assert(document.backgroundColor == null)
-                assert(document.fontColor == null)
-                assert(document.fontSize == null)
-                assert(document.horizontalAlignment == null)
-                assert(document.pdFont == null)
-                document.inheritedBackgroundColor
-                document.inheritedFontColor
-                document.inheritedFontSize
-                document.inheritedHorizontalAlignment
-                document.inheritedPdFont
-            }
-        }
-
-        Scenario("empty document") {
-            val document = Document()
-            lateinit var pdDocument: PDDocument
-
-            When("render") {
-                pdDocument = document.render()
-            }
-
-            Then("should save to pdf") {
-                ByteArrayOutputStream().use { os ->
-                    pdDocument.save(os)
-                }
-            }
-        }
+      Then("should be empty") {
+        assert(document.children.isEmpty())
+        assert(document.backgroundColor == null)
+        assert(document.fontColor == null)
+        assert(document.fontSize == null)
+        assert(document.horizontalAlignment == null)
+        assert(document.pdFont == null)
+        document.inheritedBackgroundColor
+        document.inheritedFontColor
+        document.inheritedFontSize
+        document.inheritedHorizontalAlignment
+        document.inheritedPdFont
+      }
     }
+
+    Scenario("empty document") {
+      val document = Document()
+      lateinit var pdDocument: PDDocument
+
+      When("render") {
+        pdDocument = document.render()
+      }
+
+      Then("should save to pdf") {
+        ByteArrayOutputStream().use { os ->
+          pdDocument.save(os)
+        }
+      }
+    }
+  }
 
 })

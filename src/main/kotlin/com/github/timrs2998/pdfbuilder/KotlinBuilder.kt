@@ -17,9 +17,9 @@ annotation class DocumentMarker
  * @return The rendered [PDDocument].
  */
 fun document(init: Document.() -> Unit): PDDocument {
-    val document = Document()
-    document.init()
-    return document.render()
+  val document = Document()
+  document.init()
+  return document.render()
 }
 
 // Workaround for Groovy disliking kotlin default parameters
@@ -28,18 +28,18 @@ fun Document.text(value: String) = this.text(value, {})
 
 @DocumentMarker
 fun Document.text(value: String, init: TextElement.() -> Unit = {}): TextElement {
-    val textElement = TextElement(this, value)
-    textElement.init()
-    this.children.add(textElement)
-    return textElement
+  val textElement = TextElement(this, value)
+  textElement.init()
+  this.children.add(textElement)
+  return textElement
 }
 
 @DocumentMarker
 fun Document.table(init: TableElement.() -> Unit): TableElement {
-    val tableElement = TableElement(this)
-    tableElement.init()
-    this.children.add(tableElement)
-    return tableElement
+  val tableElement = TableElement(this)
+  tableElement.init()
+  this.children.add(tableElement)
+  return tableElement
 }
 
 @DslMarker
@@ -47,18 +47,18 @@ annotation class TableMarker
 
 @TableMarker
 fun TableElement.header(init: RowElement.() -> Unit): RowElement {
-    val rowElement = RowElement(this)
-    rowElement.init()
-    this.header = rowElement
-    return rowElement
+  val rowElement = RowElement(this)
+  rowElement.init()
+  this.header = rowElement
+  return rowElement
 }
 
 @TableMarker
 fun TableElement.row(init: RowElement.() -> Unit): RowElement {
-    val rowElement = RowElement(this)
-    rowElement.init()
-    this.rows.add(rowElement)
-    return rowElement
+  val rowElement = RowElement(this)
+  rowElement.init()
+  this.rows.add(rowElement)
+  return rowElement
 }
 
 @DslMarker
@@ -70,8 +70,8 @@ fun RowElement.text(value: String) = this.text(value, {})
 
 @RowMarker
 fun RowElement.text(value: String, init: TextElement.() -> Unit = {}): TextElement {
-    val textElement = TextElement(this, value)
-    textElement.init()
-    this.columns.add(textElement)
-    return textElement
+  val textElement = TextElement(this, value)
+  textElement.init()
+  this.columns.add(textElement)
+  return textElement
 }

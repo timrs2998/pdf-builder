@@ -6,24 +6,24 @@ import java.io.ByteArrayOutputStream
 
 object TextElementSpec: Spek({
 
-    Feature("text element") {
+  Feature("text element") {
 
-        Scenario("document with text element") {
-            val pdDocument = document { text("Hello, world!") }
+    Scenario("document with text element") {
+      val pdDocument = document { text("Hello, world!") }
 
-            Then("should save pdf") {
-                ByteArrayOutputStream().use { os ->
-                    pdDocument.save(os)
-                }
-            }
+      Then("should save pdf") {
+        ByteArrayOutputStream().use { os ->
+          pdDocument.save(os)
         }
-
-        Scenario("word boundaries") {
-            Then("should wrap text on word boundaries") {
-                assert(TextElement(com.github.timrs2998.pdfbuilder.Document(), "Hello, world!").wrapText(100f) == listOf("Hello, world!"))
-                assert(TextElement(com.github.timrs2998.pdfbuilder.Document(), "Hello, world!").wrapText(50f) == listOf("Hello,", "world!"))
-            }
-        }
+      }
     }
+
+    Scenario("word boundaries") {
+      Then("should wrap text on word boundaries") {
+        assert(TextElement(com.github.timrs2998.pdfbuilder.Document(), "Hello, world!").wrapText(100f) == listOf("Hello, world!"))
+        assert(TextElement(com.github.timrs2998.pdfbuilder.Document(), "Hello, world!").wrapText(50f) == listOf("Hello,", "world!"))
+      }
+    }
+  }
 
 })

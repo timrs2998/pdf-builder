@@ -6,16 +6,16 @@ import java.io.ByteArrayOutputStream
 
 object RowElementSpec: Spek({
 
-    Feature("row") {
-        Scenario("document with empty row in table") {
-            val pdDocument = document { table { row {} } }
+  Feature("row") {
+    Scenario("document with empty row in table") {
+      val pdDocument = document { table { row {} } }
 
-            Then("should save pdf") {
-                ByteArrayOutputStream().use { os ->
-                    pdDocument.save(os)
-                }
-            }
+      Then("should save pdf") {
+        ByteArrayOutputStream().use { os ->
+          pdDocument.save(os)
         }
+      }
     }
+  }
 
 })

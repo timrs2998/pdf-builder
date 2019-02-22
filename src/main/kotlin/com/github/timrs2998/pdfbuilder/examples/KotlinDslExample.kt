@@ -18,41 +18,41 @@ import java.awt.Color
  */
 object KotlinDslExample {
 
-    @JvmStatic
-    fun main(args: Array<String>) {
-        document {
-            padding = Padding(50f, 50f, 50f, 50f)
+  @JvmStatic
+  fun main(args: Array<String>) {
+    document {
+      padding = Padding(50f, 50f, 50f, 50f)
 
-            text("Hello")
+      text("Hello")
 
-            text("Hello, color is red!") {
-                fontColor = Color(1f, .1f, .1f)
-            }
+      text("Hello, color is red!") {
+        fontColor = Color(1f, .1f, .1f)
+      }
 
-            table {
-                border = Border(1f, 2f, 3f, 4f, Color.GREEN, Color.RED, Color.BLUE, Color.BLACK)
-                margin = Margin(25f, 0f, 25f, 0f)
+      table {
+        border = Border(1f, 2f, 3f, 4f, Color.GREEN, Color.RED, Color.BLUE, Color.BLACK)
+        margin = Margin(25f, 0f, 25f, 0f)
 
-                header {
-                    backgroundColor = Color.CYAN
-                    pdFont = PDType1Font.TIMES_BOLD
+        header {
+          backgroundColor = Color.CYAN
+          pdFont = PDType1Font.TIMES_BOLD
 
-                    text("First Column")
-                    text("Second Column")
-                }
-
-                for (i in IntRange(0, 60)) {
-                    row {
-                        text("row #$i, col 0")
-                        text("row #$i, col 1")
-                    }
-                }
-            }
-
-            text("Hola, mundo.")
-        }.use { pdDocument ->
-            pdDocument.save("output.pdf")
+          text("First Column")
+          text("Second Column")
         }
+
+        for (i in IntRange(0, 60)) {
+          row {
+            text("row #$i, col 0")
+            text("row #$i, col 1")
+          }
+        }
+      }
+
+      text("Hola, mundo.")
+    }.use { pdDocument ->
+      pdDocument.save("output.pdf")
     }
+  }
 
 }

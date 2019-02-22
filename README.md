@@ -12,11 +12,11 @@ Include the following in your [build.gradle](https://docs.gradle.org/current/use
 
 ```groovy
 repositories {
-    jcenter()
+  jcenter()
 }
 
 dependencies {
-    implementation 'com.github.timrs2998:pdf-builder:<latest version>'
+  implementation 'com.github.timrs2998:pdf-builder:<latest version>'
 }
 ```
 
@@ -24,25 +24,25 @@ and you can use the library in Kotlin with its DSL:
 
 ```kotlin
 val pdDocument = document {
-    text("Hello")
-    text("Hello, color is red!") {
-        fontColor = Color(1f, .1f, .1f)
+  text("Hello")
+  text("Hello, color is red!") {
+    fontColor = Color(1f, .1f, .1f)
+  }
+  table {
+    row {
+      text("r1 c1")
+      text("r1 c2")
     }
-    table {
-        row {
-            text("r1 c1")
-            text("r1 c2")
-        }
-        row {
-            text("r2 c1")
-            text("r2 c2")
-        }
-        border = Border(1f, 2f, 3f, 4f, Color.GREEN, Color.RED, Color.BLUE, Color.BLACK)
+    row {
+      text("r2 c1")
+      text("r2 c2")
     }
-
+    border = Border(1f, 2f, 3f, 4f, Color.GREEN, Color.RED, Color.BLUE, Color.BLACK)
+  }
 }
+
 pdDocument.use { pdDocument ->
-    pdDocument.save("output.pdf")
+  pdDocument.save("output.pdf")
 }
 ```
 
