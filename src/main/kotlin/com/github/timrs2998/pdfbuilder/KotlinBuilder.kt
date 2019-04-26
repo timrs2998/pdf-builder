@@ -35,6 +35,17 @@ fun Document.text(value: String, init: TextElement.() -> Unit = {}): TextElement
 }
 
 @DocumentMarker
+fun Document.image(imagePath: String) = this.image(imagePath, {})
+
+@DocumentMarker
+fun Document.image(imagePath: String, init: ImageElement.() -> Unit = {}): ImageElement {
+  val imageElement = ImageElement(this, imagePath)
+  imageElement.init()
+  this.children.add(imageElement)
+  return imageElement
+}
+
+@DocumentMarker
 fun Document.table(init: TableElement.() -> Unit): TableElement {
   val tableElement = TableElement(this)
   tableElement.init()

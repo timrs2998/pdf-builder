@@ -1,13 +1,10 @@
 package com.github.timrs2998.pdfbuilder.examples
 
-import com.github.timrs2998.pdfbuilder.document
-import com.github.timrs2998.pdfbuilder.header
-import com.github.timrs2998.pdfbuilder.row
+import com.github.timrs2998.pdfbuilder.*
+import com.github.timrs2998.pdfbuilder.style.Alignment
 import com.github.timrs2998.pdfbuilder.style.Border
 import com.github.timrs2998.pdfbuilder.style.Margin
 import com.github.timrs2998.pdfbuilder.style.Padding
-import com.github.timrs2998.pdfbuilder.table
-import com.github.timrs2998.pdfbuilder.text
 import org.apache.pdfbox.pdmodel.font.PDType1Font
 import java.awt.Color
 
@@ -21,7 +18,16 @@ object KotlinDslExample {
   @JvmStatic
   fun main(args: Array<String>) {
     document {
+
       padding = Padding(50f, 50f, 50f, 50f)
+      horizontalAlignment = Alignment.CENTER
+
+      //Free image from https://pixabay.com/
+      val img = this::class.java.classLoader.getResource("cat.jpg")
+      image(img.path) {
+        imgHeight = 50
+        imgWidth = 90
+      }
 
       text("Hello")
 
@@ -49,7 +55,11 @@ object KotlinDslExample {
         }
       }
 
+      image(img.path)
+
       text("Hola, mundo.")
+
+
     }.use { pdDocument ->
       pdDocument.save("output.pdf")
     }
