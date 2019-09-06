@@ -1,8 +1,8 @@
 package com.github.timrs2998.pdfbuilder.examples
 
 import com.github.timrs2998.pdfbuilder.document
-import com.github.timrs2998.pdfbuilder.header
 import com.github.timrs2998.pdfbuilder.row
+import com.github.timrs2998.pdfbuilder.header
 import com.github.timrs2998.pdfbuilder.image
 import com.github.timrs2998.pdfbuilder.style.Alignment
 import com.github.timrs2998.pdfbuilder.style.Border
@@ -59,11 +59,15 @@ object KotlinDslExample {
           }
         }
       }
+
       image(img.path)
 
       text("Hola, mundo.")
+
+
     }.use { pdDocument ->
       pdDocument.save("output.pdf")
+      pdDocument.close()
     }
   }
 
