@@ -4,7 +4,11 @@ import com.github.timrs2998.pdfbuilder.style.Alignment
 import org.apache.pdfbox.pdmodel.PDDocument
 import org.apache.pdfbox.pdmodel.PDPageContentStream
 import org.apache.pdfbox.pdmodel.PDPageContentStream.AppendMode.*
+import org.apache.pdfbox.pdmodel.graphics.image.JPEGFactory
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject
+import java.awt.image.BufferedImage
+import java.io.File
+import javax.imageio.ImageIO
 
 class ImageElement(parent: Element, private val imagePath: String) : Element(parent) {
 
@@ -23,7 +27,9 @@ class ImageElement(parent: Element, private val imagePath: String) : Element(par
     minHeight: Float
   ) {
 
+    val inputStream =
 
+    JPEGFactory.createFromImage(pdDocument, ImageIO.read(File(imagePath).inputStream()))
     val pdImage = PDImageXObject.createFromFile(imagePath, pdDocument)
     imgHeight = imgHeight ?: pdImage.height
     imgWidth = imgWidth ?: pdImage.width
