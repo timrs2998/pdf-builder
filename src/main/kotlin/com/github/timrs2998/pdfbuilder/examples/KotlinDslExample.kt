@@ -59,12 +59,9 @@ object KotlinDslExample {
           }
         }
       }
-
       image(img.path)
 
       text("Hola, mundo.")
-
-
     }.use { pdDocument ->
       pdDocument.save("output.pdf")
       pdDocument.close()
