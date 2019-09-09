@@ -8,7 +8,7 @@ import org.apache.pdfbox.pdmodel.graphics.image.JPEGFactory
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject
 import java.awt.image.BufferedImage
 
-class ImageElement(parent: Element, private val imagePath: String = "", private val bufferedImage: BufferedImage?) :
+class ImageElement(parent: Element, private val imagePath: String = "", private val bufferedImage: BufferedImage? = null) :
   Element(parent) {
 
   var imgHeight: Int? = null
@@ -29,7 +29,7 @@ class ImageElement(parent: Element, private val imagePath: String = "", private 
     val pdImage = if (bufferedImage != null) JPEGFactory.createFromImage(
       pdDocument, bufferedImage )
     else PDImageXObject.createFromFile(imagePath, pdDocument)
-    
+
     imgHeight = imgHeight ?: pdImage.height
     imgWidth = imgWidth ?: pdImage.width
 
