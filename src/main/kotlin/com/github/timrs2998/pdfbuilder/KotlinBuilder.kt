@@ -1,6 +1,7 @@
 package com.github.timrs2998.pdfbuilder
 
 import org.apache.pdfbox.pdmodel.PDDocument
+import java.awt.image.BufferedImage
 
 /**
  * A DSL for Kotlin, Groovy or Java 8 consumers of this API.
@@ -35,11 +36,22 @@ fun Document.text(value: String, init: TextElement.() -> Unit = {}): TextElement
 }
 
 @DocumentMarker
-fun Document.image(imagePath: String) = this.image(imagePath, {})
+fun Document.image(imagePath: String) = this.image(imagePath) {}
 
 @DocumentMarker
 fun Document.image(imagePath: String, init: ImageElement.() -> Unit = {}): ImageElement {
-  val imageElement = ImageElement(this, imagePath)
+  val imageElement = ImageElement(this, imagePath, null)
+  imageElement.init()
+  this.children.add(imageElement)
+  return imageElement
+}
+
+@DocumentMarker
+fun Document.image(bufferedImage: BufferedImage): ImageElement  = this.image(bufferedImage) {}
+
+@DocumentMarker
+fun Document.image(bufferedImage: BufferedImage, init: ImageElement.() -> Unit = {}): ImageElement {
+  val imageElement = ImageElement(this, "", bufferedImage)
   imageElement.init()
   this.children.add(imageElement)
   return imageElement
