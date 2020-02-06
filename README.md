@@ -1,4 +1,4 @@
-[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0) [![Build Status](https://travis-ci.org/lamba92/pdf-builder.svg?branch=master)](https://travis-ci.org/lamba92/pdf-builder)
+[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0) [![Build Status](https://travis-ci.org/lamba92/pdf-builder.svg?branch=master)](https://travis-ci.org/lamba92/pdf-builder) [ ![Download](https://api.bintray.com/packages/lamba92/com.github.lamba92/pdf-builder/images/download.svg) ](https://bintray.com/lamba92/com.github.lamba92/pdf-builder/_latestVersion)
 
 # pdf-builder
 
@@ -10,13 +10,15 @@ Include the following in your [build.gradle.kts](https://docs.gradle.org/current
 
 ```kotlin
 repositories {
-  jcenter()
+  mavne("https://dl.bintray.com/lamba92/com.github.lamba92")
 }
 
 dependencies {
   implementation("com.github.lamba92:pdf-builder:<latest version>")
 }
 ```
+
+**NB**: Be sure to be using Gradle 5 with `enableFeaturePreview("GRADLE_METADATA")` in `settings.gradle.kts` or just use Gradle 6! If you are using a gradle 4 or lower import `com.github.lamba92:pdf-builder-jvm:<latest version>` instead. 
 
 and you can use the library in Kotlin with its DSL:
 
