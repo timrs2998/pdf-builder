@@ -9,4 +9,5 @@ build/
 docs/
 out/
 output.pdf
-.DS_Store
+.DS_Store\
+*.iml

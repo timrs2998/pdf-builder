@@ -3,7 +3,7 @@ package com.github.timrs2998.pdfbuilder
 import com.github.timrs2998.pdfbuilder.style.Alignment
 import org.apache.pdfbox.pdmodel.PDDocument
 import org.apache.pdfbox.pdmodel.PDPageContentStream
-import org.apache.pdfbox.pdmodel.PDPageContentStream.AppendMode.*
+import org.apache.pdfbox.pdmodel.PDPageContentStream.AppendMode.APPEND
 import org.apache.pdfbox.pdmodel.graphics.image.JPEGFactory
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject
 import java.awt.image.BufferedImage

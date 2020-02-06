@@ -1,6 +1,4 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)
-[![Build Status](https://travis-ci.org/timrs2998/pdf-builder.svg?branch=master)](https://travis-ci.org/timrs2998/pdf-builder)
-[![Download](https://api.bintray.com/packages/timrs2998/maven/pdf-builder/images/download.svg) ](https://bintray.com/timrs2998/maven/pdf-builder/_latestVersion)
 
 # pdf-builder
 
@@ -8,15 +6,15 @@ PDF builder written in [Kotlin](https://kotlinlang.org/) with a [statically type
 
 ## Usage
 
-Include the following in your [build.gradle](https://docs.gradle.org/current/userguide/userguide_single.html):
+Include the following in your [build.gradle.kts](https://docs.gradle.org/current/userguide/userguide_single.html):
 
-```groovy
+```kotlin
 repositories {
   jcenter()
 }
 
 dependencies {
-  implementation 'com.github.timrs2998:pdf-builder:<latest version>'
+  implementation("com.github.lamba92:pdf-builder:<latest version>")
 }
 ```
 
@@ -62,13 +60,7 @@ document.getChildren().add(t2);
 To build from source:
 
 ```bash
-git clone git@github.com:timrs2998/pdf-builder.git
+git clone git@github.com:lamba92/pdf-builder.git
 cd pdf-builder/
 ./gradlew build
 ```
-
-To release a new version, use GitHub to create release tags in "v1.0.0" format.
-Travis will build and publish to Bintray provided that the BINTRAY_USER and 
-BINTRAY_KEY environment variables are set.
-
-Travis also needs a personal access token for GitHub provided through the GITHUB_TOKEN environment variable to update GitHub pages.
