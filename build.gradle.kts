@@ -11,7 +11,7 @@ plugins {
 }
 
 group = "com.github.lamba92"
-version = `travis-tag` ?: "1.0"
+version = `travis-tag` ?: "1.5.2"
 description = "PDF builder written in Kotlin with a statically typed DSL"
 
 repositories {
@@ -80,7 +80,7 @@ bintray {
     version {
       name = project.version as String
     }
-    labels = arrayOf("pdf", "jvm", "java", "kotlin", "pdf-builder")
+    setLabels("pdf", "jvm", "java", "kotlin", "pdf-builder")
     publicDownloadNumbers = false
     repo = project.group as String
     name = rootProject.name
