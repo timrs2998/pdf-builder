@@ -80,9 +80,11 @@ bintray {
     version {
       name = project.version as String
     }
+    labels = arrayOf("pdf", "jvm", "java", "kotlin", "pdf-builder")
+    publicDownloadNumbers = false
     repo = project.group as String
     name = rootProject.name
-    setLicenses("GNU-GPL3")
+    setLicenses("GPL-3.0")
     vcsUrl = "https://github.com/lamba92/${rootProject.name}"
     issueTrackerUrl = "https://github.com/lamba92/${rootProject.name}/issues"
   }
