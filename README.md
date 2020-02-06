@@ -10,7 +10,7 @@ Include the following in your [build.gradle.kts](https://docs.gradle.org/current
 
 ```kotlin
 repositories {
-  mavne("https://dl.bintray.com/lamba92/com.github.lamba92")
+  maven("https://dl.bintray.com/lamba92/com.github.lamba92")
 }
 
 dependencies {
