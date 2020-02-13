@@ -120,7 +120,7 @@ fun KotlinDependencyHandler.spek(module: String, version: String = searchPropert
         "org.spekframework.spek2:spek-$module:$version"
 
 @Suppress("unused")
-fun KotlinDependencyHandler.jupiter(module: String, version: String = searchProperty("spekVersion")) =
+fun KotlinDependencyHandler.jupiter(module: String, version: String = searchProperty("junitJupiterVersion")) =
         "org.junit.jupiter:junit-jupiter-$module:$version"
 
 fun searchPropertyOrNull(name: String, vararg aliases: String): String? {
