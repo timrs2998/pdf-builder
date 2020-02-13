@@ -2,6 +2,7 @@
 
 import com.jfrog.bintray.gradle.BintrayExtension
 import com.jfrog.bintray.gradle.tasks.BintrayUploadTask
+import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
 
 plugins {
     kotlin("multiplatform")
@@ -11,9 +12,8 @@ plugins {
 }
 
 val repoOwner = "timrs2998"
-val bintrayRepoName = "maven"
-
 group = "com.github.$repoOwner"
+val bintrayRepoName = "maven"
 version = `TRAVIS-TAG` ?: "1.5.2"
 description = "PDF builder written in Kotlin with a statically typed DSL"
 
@@ -33,8 +33,6 @@ kotlin {
     sourceSets {
 
         val apachePdfboxVersion: String by project
-        val spekVersion: String by project
-        val junitJupiterVersion: String by project
 
         val jvmMain by getting {
             dependencies {
@@ -46,10 +44,10 @@ kotlin {
         val jvmTest by getting {
             dependencies {
                 implementation(kotlin("reflect"))
-                implementation("org.spekframework.spek2:spek-dsl-jvm:$spekVersion")
-                implementation("org.spekframework.spek2:spek-runner-junit5:$spekVersion")
-                implementation("org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion")
-                implementation("org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion")
+                implementation(spek("dsl-jvm"))
+                implementation(spek("runner-junit5"))
+                implementation(jupiter("api"))
+                implementation(jupiter("engine"))
             }
         }
     }
@@ -117,6 +115,14 @@ fun BintrayExtension.PackageConfig.version(action: BintrayExtension.VersionConfi
     version(closureOf(action))
 }
 
+@Suppress("unused")
+fun KotlinDependencyHandler.spek(module: String, version: String = searchProperty("spekVersion")) =
+        "org.spekframework.spek2:spek-$module:$version"
+
+@Suppress("unused")
+fun KotlinDependencyHandler.jupiter(module: String, version: String = searchProperty("spekVersion")) =
+        "org.junit.jupiter:junit-jupiter-$module:$version"
+
 fun searchPropertyOrNull(name: String, vararg aliases: String): String? {
 
     fun searchEverywhere(name: String): String? =
@@ -133,8 +139,15 @@ fun searchPropertyOrNull(name: String, vararg aliases: String): String? {
     return null
 }
 
+fun searchProperty(name: String, vararg aliases: String) =
+        searchPropertyOrNull(name, *aliases) ?: throw IllegalArgumentException(buildString {
+            append("No property found with name $name")
+            if (aliases.isNotEmpty())
+                append(" or with alias: ${aliases.joinToString(", ")}")
+        })
+
 @Suppress("PropertyName")
 val `TRAVIS-TAG`
-    get() = System.getenv("TRAVIS_TAG").run {
+    get() = with(System.getenv("TRAVIS_TAG")) {
         if (isNullOrBlank()) null else this
     }
