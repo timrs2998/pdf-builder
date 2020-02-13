@@ -1,4 +1,6 @@
-[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0) [![Build Status](https://travis-ci.org/lamba92/pdf-builder.svg?branch=master)](https://travis-ci.org/lamba92/pdf-builder) [ ![Download](https://api.bintray.com/packages/lamba92/com.github.lamba92/pdf-builder/images/download.svg) ](https://bintray.com/lamba92/com.github.lamba92/pdf-builder/_latestVersion)
+[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)
+[![Build Status](https://travis-ci.org/timrs2998/pdf-builder.svg?branch=master)](https://travis-ci.org/timrs2998/pdf-builder)
+[![Download](https://api.bintray.com/packages/timrs2998/maven/pdf-builder/images/download.svg) ](https://bintray.com/timrs2998/maven/pdf-builder/_latestVersion)
 
 # pdf-builder
 
@@ -10,15 +12,15 @@ Include the following in your [build.gradle.kts](https://docs.gradle.org/current
 
 ```kotlin
 repositories {
-  maven("https://dl.bintray.com/lamba92/com.github.lamba92")
+  maven("https://dl.bintray.com/timrs2998/maven")
 }
 
 dependencies {
-  implementation("com.github.lamba92:pdf-builder:<latest version>")
+  implementation("com.github.timrs2998:pdf-builder:<latest version>")
 }
 ```
 
-**NB**: Be sure to be using Gradle 5 with `enableFeaturePreview("GRADLE_METADATA")` in `settings.gradle.kts` or just use Gradle 6! If you are using a gradle 4 or lower import `com.github.lamba92:pdf-builder-jvm:<latest version>` instead. 
+**NB**: Be sure to be using Gradle 5.3+ with `enableFeaturePreview("GRADLE_METADATA")` in `settings.gradle.kts` or just use Gradle 6! If you are using a gradle 5.2 or lower import `com.github.lamba92:pdf-builder-jvm:<latest version>` instead. 
 
 and you can use the library in Kotlin with its DSL:
 
@@ -66,3 +68,5 @@ git clone git@github.com:lamba92/pdf-builder.git
 cd pdf-builder/
 ./gradlew build
 ```
+
+To release a new version, use GitHub to create release tags in "v1.0.0" format. Travis will build and publish to Bintray provided that the BINTRAY_USER and BINTRAY_KEY environment variables are set. Also change the `repoOwner` and `bintrayRepoName` variables accordingly to your Github username and Bintray maven repository name.
