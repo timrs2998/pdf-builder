@@ -1,5 +1,6 @@
 package com.github.timrs2998.pdfbuilder.style
 
+import com.github.timrs2998.pdfbuilder.Document
 import com.github.timrs2998.pdfbuilder.drawLine
 import org.apache.pdfbox.pdmodel.PDDocument
 import java.awt.Color
@@ -41,7 +42,7 @@ data class Border(
    * the surrounding border.
    */
   fun drawBorder(
-    document: com.github.timrs2998.pdfbuilder.Document,
+    document: Document,
     pdDocument: PDDocument,
     startX: Float,
     endX: Float,

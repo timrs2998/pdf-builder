@@ -12,7 +12,7 @@ class RowElement(override val parent: TableElement) : Element(parent) {
 
   override fun instanceHeight(width: Float, startY: Float): Float {
     val heights = columns.map { it.height(it.getWidth(width), startY) }
-    return Math.max(heights.max() ?: 0f, minHeight)
+    return (heights.max() ?: 0f).coerceAtLeast(minHeight)
   }
 
   override fun renderInstance(pdDocument: PDDocument, startX: Float, endX: Float, startY: Float, minHeight: Float) {

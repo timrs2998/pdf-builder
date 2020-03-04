@@ -25,7 +25,7 @@ fun document(init: Document.() -> Unit): PDDocument {
 
 // Workaround for Groovy disliking kotlin default parameters
 @DocumentMarker
-fun Document.text(value: String) = this.text(value, {})
+fun Document.text(value: String) = this.text(value) {}
 
 @DocumentMarker
 fun Document.text(value: String, init: TextElement.() -> Unit = {}): TextElement {
@@ -89,7 +89,7 @@ annotation class RowMarker
 
 // Workaround for Groovy disliking kotlin default parameters
 @RowMarker
-fun RowElement.text(value: String) = this.text(value, {})
+fun RowElement.text(value: String) = this.text(value) {}
 
 @RowMarker
 fun RowElement.text(value: String, init: TextElement.() -> Unit = {}): TextElement {

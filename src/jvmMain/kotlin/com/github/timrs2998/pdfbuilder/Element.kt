@@ -106,7 +106,7 @@ abstract class Element(open val parent: Element?) {
       )
       cachedInstanceHeightStartY = startY
     }
-    return Math.max(minHeight, cachedInstanceHeight!!) + margin.top + margin.bottom + padding.top + padding.bottom
+    return minHeight.coerceAtLeast(cachedInstanceHeight!!) + margin.top + margin.bottom + padding.top + padding.bottom
   }
 
   /**
@@ -144,7 +144,7 @@ abstract class Element(open val parent: Element?) {
       startX = startX + margin.left,
       endX = endX - margin.right,
       startY = startY + margin.top,
-      endY = startY + margin.top + Math.max(minHeight, padding.top + height + padding.bottom)
+      endY = startY + margin.top + minHeight.coerceAtLeast(padding.top + height + padding.bottom)
     )
     drawBox(
       document,
@@ -152,7 +152,7 @@ abstract class Element(open val parent: Element?) {
       startX = startX + margin.left,
       endX = endX - margin.right,
       startY = startY + margin.top,
-      endY = startY + margin.top + Math.max(minHeight, padding.top + height + padding.bottom),
+      endY = startY + margin.top + minHeight.coerceAtLeast(padding.top + height + padding.bottom),
       color = inheritedBackgroundColor
     )
   }

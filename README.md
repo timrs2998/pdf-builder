@@ -20,7 +20,7 @@ dependencies {
 }
 ```
 
-**NB**: Be sure to be using Gradle 5.3+ with `enableFeaturePreview("GRADLE_METADATA")` in `settings.gradle.kts` or just use Gradle 6! If you are using a gradle 5.2 or lower import `com.github.lamba92:pdf-builder-jvm:<latest version>` instead. 
+**NB**: Be sure to be using Gradle 5.3+ with `enableFeaturePreview("GRADLE_METADATA")` in `settings.gradle.kts` or just use Gradle 6! If you are using a gradle 5.2 or lower import `com.github.timrs2998:pdf-builder-jvm:<latest version>` instead.
 
 and you can use the library in Kotlin with its DSL:
 
@@ -64,7 +64,7 @@ document.getChildren().add(t2);
 To build from source:
 
 ```bash
-git clone git@github.com:lamba92/pdf-builder.git
+git clone git@github.com:timrs2998/pdf-builder.git
 cd pdf-builder/
 ./gradlew build
 ```

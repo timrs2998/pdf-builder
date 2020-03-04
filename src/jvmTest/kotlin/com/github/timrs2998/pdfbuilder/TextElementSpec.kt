@@ -20,8 +20,8 @@ object TextElementSpec: Spek({
 
     Scenario("word boundaries") {
       Then("should wrap text on word boundaries") {
-        assert(TextElement(com.github.timrs2998.pdfbuilder.Document(), "Hello, world!").wrapText(100f) == listOf("Hello, world!"))
-        assert(TextElement(com.github.timrs2998.pdfbuilder.Document(), "Hello, world!").wrapText(50f) == listOf("Hello,", "world!"))
+        assert(TextElement(Document(), "Hello, world!").wrapText(100f) == listOf("Hello, world!"))
+        assert(TextElement(Document(), "Hello, world!").wrapText(50f) == listOf("Hello,", "world!"))
       }
     }
   }
