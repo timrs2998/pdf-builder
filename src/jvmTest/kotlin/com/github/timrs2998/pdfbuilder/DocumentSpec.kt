@@ -1,8 +1,8 @@
 package com.github.timrs2998.pdfbuilder
 
 import org.apache.pdfbox.pdmodel.PDDocument
-import org.spekframework.spek2.style.gherkin.Feature
 import org.spekframework.spek2.Spek
+import org.spekframework.spek2.style.gherkin.Feature
 import java.io.ByteArrayOutputStream
 
 object DocumentSpec: Spek({
