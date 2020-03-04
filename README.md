@@ -4,11 +4,15 @@
 
 # pdf-builder
 
-PDF builder written in [Kotlin](https://kotlinlang.org/) with a [statically typed](https://en.wikipedia.org/wiki/Type_system#Static_type_checking) [DSL](https://en.wikipedia.org/wiki/Domain-specific_language). Inspired by Craig's [document-builder](https://github.com/craigburke/document-builder) library.
+PDF builder written in [Kotlin](https://kotlinlang.org/) with a [statically typed](https://en.wikipedia.org/wiki/Type_system#Static_type_checking)
+[DSL](https://en.wikipedia.org/wiki/Domain-specific_language). Inspired by Craig's
+[document-builder](https://github.com/craigburke/document-builder) library. Under the hood, it relies on
+[Apache PDFBox](https://pdfbox.apache.org/) to create the pdf files.
 
 ## Usage
 
-Include the following in your [build.gradle.kts](https://docs.gradle.org/current/userguide/userguide_single.html):
+Both pdf-build and Apache PDFBox are required dependencies. Include the following in your
+[build.gradle.kts](https://docs.gradle.org/current/userguide/userguide_single.html):
 
 ```kotlin
 repositories {
@@ -17,6 +21,7 @@ repositories {
 
 dependencies {
   implementation("com.github.timrs2998:pdf-builder:<latest version>")
+  implementation("org.apache.pdfbox:pdfbox:<latest apache pdfbox version>")
 }
 ```
 
