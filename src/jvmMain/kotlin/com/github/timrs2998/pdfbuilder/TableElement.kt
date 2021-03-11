@@ -19,7 +19,7 @@ class TableElement(override val parent: Document) : Element(parent) {
 
   override fun instanceHeight(width: Float, startY: Float): Float {
 //        return (header?.height(width, startY) ?: 0f) + rows.fold(0.0f, { sum, row -> sum + row.height(width, startY) })
-    var currentY = startY
+    var currentY = 0f
     var i = 0
     while (i < rows.size) {
       var row = rows[i]
