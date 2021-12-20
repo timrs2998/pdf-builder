@@ -15,7 +15,7 @@ Both pdf-build and Apache PDFBox are required dependencies. Include the followin
 
 ```kotlin
 repositories {
-  maven("https://maven.pkg.github.com/timrs2998/pdf-builder")
+  maven { url = uri("https://maven.pkg.github.com/timrs2998/pdf-builder") }
 }
 
 dependencies {
