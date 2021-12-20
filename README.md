@@ -1,6 +1,5 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)
 [![Build Status](https://travis-ci.org/timrs2998/pdf-builder.svg?branch=master)](https://travis-ci.org/timrs2998/pdf-builder)
-[![Download](https://api.bintray.com/packages/timrs2998/maven/pdf-builder/images/download.svg) ](https://bintray.com/timrs2998/maven/pdf-builder/_latestVersion)
 
 # pdf-builder
 
@@ -16,7 +15,7 @@ Both pdf-build and Apache PDFBox are required dependencies. Include the followin
 
 ```kotlin
 repositories {
-  maven("https://dl.bintray.com/timrs2998/maven")
+  maven("https://maven.pkg.github.com/timrs2998/pdf-builder")
 }
 
 dependencies {
@@ -24,8 +23,6 @@ dependencies {
   implementation("org.apache.pdfbox:pdfbox:<latest apache pdfbox version>")
 }
 ```
-
-**NB**: Be sure to be using Gradle 5.3+ with `enableFeaturePreview("GRADLE_METADATA")` in `settings.gradle.kts` or just use Gradle 6! If you are using a gradle 5.2 or lower import `com.github.timrs2998:pdf-builder-jvm:<latest version>` instead.
 
 and you can use the library in Kotlin with its DSL:
 
@@ -74,4 +71,4 @@ cd pdf-builder/
 ./gradlew build
 ```
 
-To release a new version, use GitHub to create release tags in "v1.0.0" format. Travis will build and publish to Bintray provided that the BINTRAY_USER and BINTRAY_KEY environment variables are set. Also change the `repoOwner` and `bintrayRepoName` variables accordingly to your Github username and Bintray maven repository name.
+To release a new version, use GitHub to create release tags in "v1.0.0" format matching build.gradle.kts. GitHub Actions will build and publish to the GitHub Packages registry.

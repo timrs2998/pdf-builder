@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "com.github.timrs2998"
-version = "1.5.2"
+version = "1.6.0"
 description = "PDF builder written in Kotlin with a statically typed DSL"
 
 repositories {
