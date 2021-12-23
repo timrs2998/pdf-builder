@@ -16,7 +16,7 @@ class Document : Element(null) {
 
   var orientation: Orientation = Orientation.PORTRAIT
 
-  val pdRectangle: PDRectangle = PDRectangle.A4
+  var pdRectangle: PDRectangle = PDRectangle.A4
 
   val pageWidth: Float
     get() = when (orientation) {
