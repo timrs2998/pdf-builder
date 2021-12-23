@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "com.github.timrs2998"
-version = "1.8.0"
+version = "1.9.0"
 description = "PDF builder written in Kotlin with a statically typed DSL"
 
 repositories {
@@ -17,7 +17,7 @@ repositories {
 dependencies {
   implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
   implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-  api("org.apache.pdfbox:pdfbox:2.0.13")
+  api("org.apache.pdfbox:pdfbox:2.0.24")
 
   val spek_version = "2.0.17"
   testImplementation("org.spekframework.spek2:spek-dsl-jvm:$spek_version")
