@@ -64,15 +64,13 @@ class TextElement(parent: Element, val value: String = "Hello, world!") : Elemen
         return lines
       }
     }
-
-
   }
 
   private fun String.splitWord(maxWidth: Float): List<String> {
     val splitWords = mutableListOf<String>()
 
     // split word in half
-    this.chunked((this.length + 1) / 2).forEach{
+    this.chunked((this.length + 1) / 2).forEach {
       if (it.width() > maxWidth) {
         splitWords.addAll(it.splitWord(maxWidth))
       } else {
