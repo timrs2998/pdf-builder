@@ -1,9 +1,6 @@
 package com.github.timrs2998.pdfbuilder
 
-import com.github.timrs2998.pdfbuilder.style.Alignment
-import com.github.timrs2998.pdfbuilder.style.Border
-import com.github.timrs2998.pdfbuilder.style.Margin
-import com.github.timrs2998.pdfbuilder.style.Padding
+import com.github.timrs2998.pdfbuilder.style.*
 import org.apache.pdfbox.pdmodel.PDDocument
 import org.apache.pdfbox.pdmodel.font.PDFont
 import org.apache.pdfbox.pdmodel.font.PDType1Font
@@ -43,6 +40,9 @@ abstract class Element(open val parent: Element?) {
 
     @JvmStatic
     private val FALLBACK_PD_FONT: PDFont = PDType1Font.TIMES_ROMAN
+
+    @JvmStatic
+    private val FALLBACK_WRAP: Wrap = Wrap.WORD
   }
 
   // Properties that are not inherited
@@ -56,6 +56,7 @@ abstract class Element(open val parent: Element?) {
   var fontSize: Float? = null
   var horizontalAlignment: Alignment? = null
   var pdFont: PDFont? = null
+  var wrap: Wrap? = null
 
   /******************************************************************************************************************/
   /** Properties lazily inherited during rendering ******************************************************************/
@@ -86,6 +87,10 @@ abstract class Element(open val parent: Element?) {
 
   internal val inheritedPdFont: PDFont by lazy {
     pdFont ?: parent?.inheritedPdFont ?: FALLBACK_PD_FONT
+  }
+
+  internal val inheritedWrap: Wrap by lazy {
+    wrap ?: parent?.wrap ?: FALLBACK_WRAP
   }
 
   /******************************************************************************************************************/
