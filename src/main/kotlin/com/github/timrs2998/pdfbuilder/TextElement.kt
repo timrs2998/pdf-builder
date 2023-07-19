@@ -1,6 +1,7 @@
 package com.github.timrs2998.pdfbuilder
 
 import com.github.timrs2998.pdfbuilder.style.Alignment
+import com.github.timrs2998.pdfbuilder.style.Wrap
 import org.apache.pdfbox.pdmodel.PDDocument
 import org.apache.pdfbox.pdmodel.PDPageContentStream
 import org.apache.pdfbox.pdmodel.PDPageContentStream.AppendMode.APPEND
@@ -40,20 +41,44 @@ class TextElement(parent: Element, val value: String = "Hello, world!") : Elemen
   }
 
   fun wrapText(width: Float): List<String> {
-    val lines = mutableListOf<String>()
-    value.splitToSequence(" ").forEach { word ->
-      if (word.width() > width) {
-        // skip word for now
-//                throw UnsupportedOperationException("TODO: wrap word by character for this case")
-      } else if (lines.isEmpty()) {
-        lines.add(word)
-      } else if ((lines.last() + ' ' + word).width() > width) {
-        lines.add(word)
-      } else {
-        lines[lines.size-1] = lines.last() + ' ' + word
+    when (inheritedWrap) {
+      Wrap.NONE -> return listOf(value)
+
+      // If wrap is WORD or CHARACTER split text by space
+      else -> {
+        val lines = mutableListOf<String>()
+        value.splitToSequence(" ").forEach { word ->
+          if (word.width() > width) {
+            // If wrap is CHARACTER and text split into words is still too big, split text in half
+            if (inheritedWrap == Wrap.CHARACTER) {
+              lines.addAll(word.splitWord(width))
+            }
+          } else if (lines.isEmpty()) {
+            lines.add(word)
+          } else if ((lines.last() + ' ' + word).width() > width) {
+            lines.add(word)
+          } else {
+            lines[lines.size-1] = lines.last() + ' ' + word
+          }
+        }
+        return lines
       }
     }
-    return lines
+  }
+
+  private fun String.splitWord(maxWidth: Float): List<String> {
+    val splitWords = mutableListOf<String>()
+
+    // split word in half
+    this.chunked((this.length + 1) / 2).forEach {
+      if (it.width() > maxWidth) {
+        splitWords.addAll(it.splitWord(maxWidth))
+      } else {
+        splitWords.add(it)
+      }
+    }
+
+    return splitWords
   }
 
   private fun String.width() = inheritedPdFont.getStringWidth(this) * inheritedFontSize / 1000
