@@ -17,7 +17,7 @@ repositories {
 dependencies {
   implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
   implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-  api("org.apache.pdfbox:pdfbox:2.0.24")
+  api("org.apache.pdfbox:pdfbox:3.0.0")
 
   val spek_version = "2.0.19"
   testImplementation("org.spekframework.spek2:spek-dsl-jvm:$spek_version")

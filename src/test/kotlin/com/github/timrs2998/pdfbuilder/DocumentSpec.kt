@@ -18,7 +18,7 @@ object DocumentSpec: Spek({
         assert(document.fontColor == null)
         assert(document.fontSize == null)
         assert(document.horizontalAlignment == null)
-        assert(document.pdFont == null)
+        assert(document.fontName == null)
         document.inheritedBackgroundColor
         document.inheritedFontColor
         document.inheritedFontSize

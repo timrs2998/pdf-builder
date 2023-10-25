@@ -5,7 +5,7 @@ import com.github.timrs2998.pdfbuilder.style.Alignment
 import com.github.timrs2998.pdfbuilder.style.Border
 import com.github.timrs2998.pdfbuilder.style.Margin
 import com.github.timrs2998.pdfbuilder.style.Padding
-import org.apache.pdfbox.pdmodel.font.PDType1Font
+import org.apache.pdfbox.pdmodel.font.Standard14Fonts
 import java.awt.Color
 
 /**
@@ -41,7 +41,7 @@ object KotlinDslExample {
 
         header {
           backgroundColor = Color.CYAN
-          pdFont = PDType1Font.TIMES_BOLD
+          fontName = Standard14Fonts.FontName.TIMES_BOLD
 
           text("First Column")
           text("Second Column")
