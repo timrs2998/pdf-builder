@@ -19,8 +19,8 @@ repositories {
 }
 
 dependencies {
-    implementation("com.github.timrs2998:pdf-builder:1.9.0")
-    implementation("org.apache.pdfbox:pdfbox:2.0.26")
+    implementation("com.github.timrs2998:pdf-builder:2.0.0")
+    implementation("org.apache.pdfbox:pdfbox:3.0.0")
 }
 ```
 

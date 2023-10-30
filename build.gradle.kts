@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "com.github.timrs2998"
-version = "1.10.1"
+version = "2.0.0"
 description = "PDF builder written in Kotlin with a statically typed DSL"
 
 repositories {
@@ -33,7 +33,7 @@ tasks {
   }
   wrapper {
     distributionType = ALL
-    gradleVersion = "7.6.3"
+    gradleVersion = "8.4"
   }
 }
 
