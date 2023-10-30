@@ -2,8 +2,8 @@ package com.github.timrs2998.pdfbuilder
 
 import com.github.timrs2998.pdfbuilder.style.*
 import org.apache.pdfbox.pdmodel.PDDocument
-import org.apache.pdfbox.pdmodel.font.PDFont
 import org.apache.pdfbox.pdmodel.font.PDType1Font
+import org.apache.pdfbox.pdmodel.font.Standard14Fonts.FontName
 import java.awt.Color
 
 /**
@@ -18,7 +18,7 @@ import java.awt.Color
  *
  * An [Element] can be styled similar to CSS, being assigned a [border],
  * [margin], [padding], [backgroundColor], [fontColor], [fontSize],
- * [horizontalAlignment], and [pdFont].
+ * [horizontalAlignment], and [fontName].
  *
  * Most styles will "cascade" or be inherited by children. The only styles
  * that are not inherited are [border], [margin], and [padding].
@@ -39,7 +39,7 @@ abstract class Element(open val parent: Element?) {
     private val FALLBACK_HORIZONTAL_ALIGNMENT = Alignment.LEFT
 
     @JvmStatic
-    private val FALLBACK_PD_FONT: PDFont = PDType1Font.TIMES_ROMAN
+    private val FALLBACK_PD_FONT: PDType1Font = PDType1Font(FontName.TIMES_ROMAN)
 
     @JvmStatic
     private val FALLBACK_WRAP: Wrap = Wrap.WORD
@@ -55,7 +55,7 @@ abstract class Element(open val parent: Element?) {
   var fontColor: Color? = null
   var fontSize: Float? = null
   var horizontalAlignment: Alignment? = null
-  var pdFont: PDFont? = null
+  var fontName: FontName? = null
   var wrap: Wrap? = null
 
   /******************************************************************************************************************/
@@ -85,8 +85,8 @@ abstract class Element(open val parent: Element?) {
     horizontalAlignment ?: parent?.inheritedHorizontalAlignment ?: FALLBACK_HORIZONTAL_ALIGNMENT
   }
 
-  internal val inheritedPdFont: PDFont by lazy {
-    pdFont ?: parent?.inheritedPdFont ?: FALLBACK_PD_FONT
+  internal val inheritedPdFont: PDType1Font by lazy {
+    fontName?.let { PDType1Font(it) } ?: parent?.inheritedPdFont ?: FALLBACK_PD_FONT
   }
 
   internal val inheritedWrap: Wrap by lazy {
