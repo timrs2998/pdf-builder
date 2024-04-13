@@ -1,18 +1,14 @@
 package com.github.timrs2998.pdfbuilder
 
-import org.apache.pdfbox.pdmodel.PDDocument
-import org.spekframework.spek2.Spek
-import org.spekframework.spek2.style.gherkin.Feature
+import io.kotest.core.spec.style.FunSpec
 import java.io.ByteArrayOutputStream
+import org.apache.pdfbox.pdmodel.PDDocument
 
-object DocumentSpec: Spek({
+class DocumentSpec :
+    FunSpec({
+      test("new document") {
+        val document = Document()
 
-  Feature("Document") {
-
-    Scenario("new document") {
-      val document = Document()
-
-      Then("should be empty") {
         assert(document.children.isEmpty())
         assert(document.backgroundColor == null)
         assert(document.fontColor == null)
@@ -25,22 +21,15 @@ object DocumentSpec: Spek({
         document.inheritedHorizontalAlignment
         document.inheritedPdFont
       }
-    }
 
-    Scenario("empty document") {
-      val document = Document()
-      lateinit var pdDocument: PDDocument
+      test("empty document") {
+        val document = Document()
+        lateinit var pdDocument: PDDocument
 
-      When("render") {
+        // when render
         pdDocument = document.render()
-      }
 
-      Then("should save to pdf") {
-        ByteArrayOutputStream().use { os ->
-          pdDocument.save(os)
-        }
+        // then should save to pdf
+        ByteArrayOutputStream().use { os -> pdDocument.save(os) }
       }
-    }
-  }
-
-})
+    })

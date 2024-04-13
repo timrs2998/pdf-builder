@@ -1,12 +1,8 @@
 package com.github.timrs2998.pdfbuilder.style
 
 enum class Orientation {
-  /**
-   * Wider but shorter
-   */
+  /** Wider but shorter */
   LANDSCAPE,
-  /**
-   * Taller but skinnier
-   */
+  /** Taller but skinnier */
   PORTRAIT
 }

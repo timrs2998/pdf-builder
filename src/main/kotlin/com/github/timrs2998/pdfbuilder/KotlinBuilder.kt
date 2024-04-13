@@ -1,19 +1,15 @@
 package com.github.timrs2998.pdfbuilder
 
-import org.apache.pdfbox.pdmodel.PDDocument
 import java.awt.image.BufferedImage
+import org.apache.pdfbox.pdmodel.PDDocument
+
+/** A DSL for Kotlin, Groovy or Java 8 consumers of this API. */
+@DslMarker annotation class DocumentMarker
 
 /**
- * A DSL for Kotlin, Groovy or Java 8 consumers of this API.
- */
-
-@DslMarker
-annotation class DocumentMarker
-
-/**
- * Creates the outermost [Document] [element][Element] representing the pdf, and returns
- * the rendered [PDDocument] that can be [saved][PDDocument.save] to a
- * [java.io.File] or [java.io.OutputStream].
+ * Creates the outermost [Document] [element][Element] representing the pdf, and returns the
+ * rendered [PDDocument] that can be [saved][PDDocument.save] to a [java.io.File] or
+ * [java.io.OutputStream].
  *
  * @return The rendered [PDDocument].
  */
@@ -24,8 +20,7 @@ fun document(init: Document.() -> Unit): PDDocument {
 }
 
 // Workaround for Groovy disliking kotlin default parameters
-@DocumentMarker
-fun Document.text(value: String) = this.text(value) {}
+@DocumentMarker fun Document.text(value: String) = this.text(value) {}
 
 @DocumentMarker
 fun Document.text(value: String, init: TextElement.() -> Unit = {}): TextElement {
@@ -35,8 +30,7 @@ fun Document.text(value: String, init: TextElement.() -> Unit = {}): TextElement
   return textElement
 }
 
-@DocumentMarker
-fun Document.image(imagePath: String) = this.image(imagePath) {}
+@DocumentMarker fun Document.image(imagePath: String) = this.image(imagePath) {}
 
 @DocumentMarker
 fun Document.image(imagePath: String, init: ImageElement.() -> Unit = {}): ImageElement {
@@ -47,7 +41,7 @@ fun Document.image(imagePath: String, init: ImageElement.() -> Unit = {}): Image
 }
 
 @DocumentMarker
-fun Document.image(bufferedImage: BufferedImage): ImageElement  = this.image(bufferedImage) {}
+fun Document.image(bufferedImage: BufferedImage): ImageElement = this.image(bufferedImage) {}
 
 @DocumentMarker
 fun Document.image(bufferedImage: BufferedImage, init: ImageElement.() -> Unit = {}): ImageElement {
@@ -65,8 +59,7 @@ fun Document.table(init: TableElement.() -> Unit): TableElement {
   return tableElement
 }
 
-@DslMarker
-annotation class TableMarker
+@DslMarker annotation class TableMarker
 
 @TableMarker
 fun TableElement.header(init: RowElement.() -> Unit): RowElement {
@@ -84,12 +77,10 @@ fun TableElement.row(init: RowElement.() -> Unit): RowElement {
   return rowElement
 }
 
-@DslMarker
-annotation class RowMarker
+@DslMarker annotation class RowMarker
 
 // Workaround for Groovy disliking kotlin default parameters
-@RowMarker
-fun RowElement.text(value: String) = this.text(value) {}
+@RowMarker fun RowElement.text(value: String) = this.text(value) {}
 
 @RowMarker
 fun RowElement.text(value: String, init: TextElement.() -> Unit = {}): TextElement {

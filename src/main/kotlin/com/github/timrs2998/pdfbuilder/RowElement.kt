@@ -15,7 +15,13 @@ class RowElement(override val parent: TableElement) : Element(parent) {
     return (heights.maxOrNull() ?: 0f).coerceAtLeast(minHeight)
   }
 
-  override fun renderInstance(pdDocument: PDDocument, startX: Float, endX: Float, startY: Float, minHeight: Float) {
+  override fun renderInstance(
+      pdDocument: PDDocument,
+      startX: Float,
+      endX: Float,
+      startY: Float,
+      minHeight: Float
+  ) {
     val height = height(endX - startX, startY, minHeight)
     columns.fold(startX) { columnStartX, column ->
       val columnWidth = column.getWidth(endX - startX)
@@ -25,8 +31,8 @@ class RowElement(override val parent: TableElement) : Element(parent) {
   }
 
   private fun TextElement.getWidth(totalWidth: Float): Float {
-    val multiplier = if (weights.isEmpty()) 1f / columns.size else weights[columns.indexOf(this)] / weights.sum()
+    val multiplier =
+        if (weights.isEmpty()) 1f / columns.size else weights[columns.indexOf(this)] / weights.sum()
     return totalWidth * multiplier
   }
-
 }

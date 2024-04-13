@@ -5,8 +5,8 @@ import org.apache.pdfbox.pdmodel.PDDocument
 import org.apache.pdfbox.pdmodel.common.PDRectangle
 
 /**
- * Represents a pdf document. The document is the outer container for all
- * elements belonging to a pdf. Once rendered, it cannot be modified.
+ * Represents a pdf document. The document is the outer container for all elements belonging to a
+ * pdf. Once rendered, it cannot be modified.
  */
 class Document : Element(null) {
 
@@ -19,25 +19,26 @@ class Document : Element(null) {
   var pdRectangle: PDRectangle = PDRectangle.A4
 
   val pageWidth: Float
-    get() = when (orientation) {
-      Orientation.LANDSCAPE -> pdRectangle.height
-      Orientation.PORTRAIT -> pdRectangle.width
-    }
+    get() =
+        when (orientation) {
+          Orientation.LANDSCAPE -> pdRectangle.height
+          Orientation.PORTRAIT -> pdRectangle.width
+        }
 
   val pageHeight: Float
-    get() = when (orientation) {
-      Orientation.LANDSCAPE -> pdRectangle.width
-      Orientation.PORTRAIT -> pdRectangle.height
-    }
-
+    get() =
+        when (orientation) {
+          Orientation.LANDSCAPE -> pdRectangle.width
+          Orientation.PORTRAIT -> pdRectangle.height
+        }
 
   override fun instanceHeight(width: Float, startY: Float): Float {
     return children.fold(0.0f) { sum, row -> sum + row.height(width, startY) }
   }
 
   /**
-   * Forces one-time evaluation of lazy properties and renders object model to
-   * a [PDDocument]. Once called, document can no longer be modified.
+   * Forces one-time evaluation of lazy properties and renders object model to a [PDDocument]. Once
+   * called, document can no longer be modified.
    */
   fun render(): PDDocument {
     val pdDocument = PDDocument()
@@ -46,17 +47,19 @@ class Document : Element(null) {
   }
 
   override fun renderInstance(
-    pdDocument: PDDocument,
-    startX: Float,
-    endX: Float,
-    startY: Float,
-    minHeight: Float) {
+      pdDocument: PDDocument,
+      startX: Float,
+      endX: Float,
+      startY: Float,
+      minHeight: Float
+  ) {
     children.fold(startY) { startY, child ->
       // Handle paging unless child is table (tables handle page conflicts by row)
-      val adjustedStartY = when (child) {
-        is TableElement -> startY
-        else -> adjustStartYForPaging(startY, startY + child.height(endX - startX, startY))
-      }
+      val adjustedStartY =
+          when (child) {
+            is TableElement -> startY
+            else -> adjustStartYForPaging(startY, startY + child.height(endX - startX, startY))
+          }
       child.render(pdDocument, startX, endX, adjustedStartY)
       adjustedStartY + child.height(endX - startX, adjustedStartY)
     }
@@ -70,8 +73,8 @@ class Document : Element(null) {
   }
 
   /**
-   * If startY and endY cross a page (or page margin) boundary, returns a new startY for rendering. Otherwise
-   * returns the original startY.
+   * If startY and endY cross a page (or page margin) boundary, returns a new startY for rendering.
+   * Otherwise returns the original startY.
    *
    * TODO: also consider padding
    */
@@ -86,12 +89,11 @@ class Document : Element(null) {
 
     fun Float.insideBottomMargin() = getYOffsetForPage(this) > document.pageHeight - margin.top
 
-    if (startY.insideBottomMargin()
-      || endY.insideBottomMargin()
-      || getPageIndex(pageHeight, startY) != getPageIndex(pageHeight, endY)) {
-      return (getPageIndex(pageHeight, startY) +1) * pageHeight + margin.top
+    if (startY.insideBottomMargin() ||
+        endY.insideBottomMargin() ||
+        getPageIndex(pageHeight, startY) != getPageIndex(pageHeight, endY)) {
+      return (getPageIndex(pageHeight, startY) + 1) * pageHeight + margin.top
     }
     return startY
   }
-
 }

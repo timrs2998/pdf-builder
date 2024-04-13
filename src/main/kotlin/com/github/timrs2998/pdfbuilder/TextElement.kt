@@ -13,27 +13,26 @@ class TextElement(parent: Element, val value: String = "Hello, world!") : Elemen
   }
 
   override fun renderInstance(
-    pdDocument: PDDocument,
-    startX: Float,
-    endX: Float,
-    startY: Float,
-    minHeight: Float) {
+      pdDocument: PDDocument,
+      startX: Float,
+      endX: Float,
+      startY: Float,
+      minHeight: Float
+  ) {
     val pdPage = getPage(document, pdDocument, startY)
     wrapText(endX - startX).forEachIndexed { i, line ->
-      val startX = when (inheritedHorizontalAlignment) {
-        Alignment.LEFT -> startX
-        Alignment.RIGHT -> endX - line.width()
-        Alignment.CENTER -> startX + (endX - startX - line.width()) / 2f
-      }
+      val startX =
+          when (inheritedHorizontalAlignment) {
+            Alignment.LEFT -> startX
+            Alignment.RIGHT -> endX - line.width()
+            Alignment.CENTER -> startX + (endX - startX - line.width()) / 2f
+          }
 
       PDPageContentStream(pdDocument, pdPage, APPEND, true).use { stream ->
         stream.beginText()
         stream.setFont(inheritedPdFont, inheritedFontSize)
         stream.setNonStrokingColor(inheritedFontColor)
-        stream.newLineAtOffset(
-          startX,
-          (transformY(document, startY) - fontHeight) - fontHeight * i
-        )
+        stream.newLineAtOffset(startX, (transformY(document, startY) - fontHeight) - fontHeight * i)
         stream.showText(line)
         stream.endText()
       }
@@ -58,7 +57,7 @@ class TextElement(parent: Element, val value: String = "Hello, world!") : Elemen
           } else if ((lines.last() + ' ' + word).width() > width) {
             lines.add(word)
           } else {
-            lines[lines.size-1] = lines.last() + ' ' + word
+            lines[lines.size - 1] = lines.last() + ' ' + word
           }
         }
         return lines
@@ -85,5 +84,4 @@ class TextElement(parent: Element, val value: String = "Hello, world!") : Elemen
 
   private val fontHeight: Float
     get() = inheritedPdFont.boundingBox.height * inheritedFontSize / 1000f
-
 }

@@ -1,27 +1,28 @@
 package com.github.timrs2998.pdfbuilder
 
 import com.github.timrs2998.pdfbuilder.style.Orientation
+import java.awt.Color
 import org.apache.pdfbox.pdmodel.PDDocument
 import org.apache.pdfbox.pdmodel.PDPage
 import org.apache.pdfbox.pdmodel.PDPageContentStream
 import org.apache.pdfbox.pdmodel.PDPageContentStream.AppendMode.APPEND
 import org.apache.pdfbox.pdmodel.PDPageContentStream.AppendMode.PREPEND
 import org.apache.pdfbox.util.Matrix
-import java.awt.Color
 
 /**
- * Draws a line from (startX, startY) to (endX, endY) with given color and width. The line must
- * not cross page boundaries.
+ * Draws a line from (startX, startY) to (endX, endY) with given color and width. The line must not
+ * cross page boundaries.
  */
 fun drawLine(
-  document: Document,
-  pdDocument: PDDocument,
-  startX: Float,
-  startY: Float,
-  endX: Float,
-  endY: Float,
-  width: Float,
-  color: Color) {
+    document: Document,
+    pdDocument: PDDocument,
+    startX: Float,
+    startY: Float,
+    endX: Float,
+    endY: Float,
+    width: Float,
+    color: Color
+) {
   if (width == 0f) {
     return
   } else if (width < 0f) {
@@ -40,17 +41,18 @@ fun drawLine(
 }
 
 /**
- * Draws the box whose opposite corners are (startX, startY) and (endX, endY). The box must
- * not cross page boundaries.
+ * Draws the box whose opposite corners are (startX, startY) and (endX, endY). The box must not
+ * cross page boundaries.
  */
 fun drawBox(
-  document: Document,
-  pdDocument: PDDocument,
-  startX: Float,
-  endX: Float,
-  startY: Float,
-  endY: Float,
-  color: Color) {
+    document: Document,
+    pdDocument: PDDocument,
+    startX: Float,
+    endX: Float,
+    startY: Float,
+    endY: Float,
+    color: Color
+) {
   val width = endX - startX
   val height = endY - startY
   if (width <= 0 || height <= 0) {
@@ -62,8 +64,9 @@ fun drawBox(
     stream.setNonStrokingColor(color)
     when (document.orientation) {
       Orientation.LANDSCAPE -> {
-        val point = Matrix(0f, 1f, -1f, 0f, document.pdRectangle.width, 0f)
-          .transformPoint(startX, transformY(document, startY))
+        val point =
+            Matrix(0f, 1f, -1f, 0f, document.pdRectangle.width, 0f)
+                .transformPoint(startX, transformY(document, startY))
         stream.addRect(point.x, point.y, height, width)
       }
       Orientation.PORTRAIT -> stream.addRect(startX, transformY(document, endY), width, height)
@@ -82,9 +85,7 @@ fun getPageIndex(pageHeight: Float, y: Float): Int {
   return i
 }
 
-/**
- * Safely gets (or creates) the page containing endY
- */
+/** Safely gets (or creates) the page containing endY */
 fun getPage(document: Document, pdDocument: PDDocument, endY: Float): PDPage {
   val pageNumber: Int = getPageIndex(document.pageHeight, endY)
   var pdPage: PDPage? = pdDocument.pages.elementAtOrNull(pageNumber)
@@ -103,11 +104,9 @@ fun getPage(document: Document, pdDocument: PDDocument, endY: Float): PDPage {
 }
 
 /**
- * Transforms endY from pdf-builder space to Apache pdf-box space (relative
- * to bottom of current page).
+ * Transforms endY from pdf-builder space to Apache pdf-box space (relative to bottom of current
+ * page).
  */
 fun transformY(document: Document, y: Float): Float {
   return document.pageHeight - (y - document.pageHeight * getPageIndex(document.pageHeight, y))
 }
-
-

@@ -9,8 +9,8 @@ import com.github.timrs2998.pdfbuilder.style.Border
 import java.awt.Color
 
 /**
- * Class containing main method demonstrate creation of a sample "output.pdf"
- * in an imperative, Java style.
+ * Class containing main method demonstrate creation of a sample "output.pdf" in an imperative, Java
+ * style.
  */
 object ImperativeExample {
 
@@ -23,15 +23,16 @@ object ImperativeExample {
     initialText.backgroundColor = Color(222, 222, 222)
     document.children.add(initialText)
 
-    document.children.add(TextElement(document, "WRAP THIS TEXT. WRAP THIS TEXT. WRAP THIS TEXT. WRAP THIS TEXT. WRAP THIS TEXT. WRAP THIS TEXT. WRAP THIS TEXT. WRAP THIS TEXT. WRAP THIS TEXT. WRAP THIS TEXT. WRAP THIS TEXT. WRAP THIS TEXT. WRAP THIS TEXT. WRAP THIS TEXT. WRAP THIS TEXT. WRAP THIS TEXT. WRAP THIS TEXT. WRAP THIS TEXT. WRAP THIS TEXT. "))
+    document.children.add(
+        TextElement(
+            document,
+            "WRAP THIS TEXT. WRAP THIS TEXT. WRAP THIS TEXT. WRAP THIS TEXT. WRAP THIS TEXT. WRAP THIS TEXT. WRAP THIS TEXT. WRAP THIS TEXT. WRAP THIS TEXT. WRAP THIS TEXT. WRAP THIS TEXT. WRAP THIS TEXT. WRAP THIS TEXT. WRAP THIS TEXT. WRAP THIS TEXT. WRAP THIS TEXT. WRAP THIS TEXT. WRAP THIS TEXT. WRAP THIS TEXT. "))
 
     document.children.add(TextElement(document, "This is another line"))
     document.children.add(TextElement(document, "This is a third line"))
     document.children.add(TextElement(document, "This is a fourth line"))
 
-    IntRange(0, 59).forEach { i ->
-      document.children.add(TextElement(document, "Value: $i"))
-    }
+    IntRange(0, 59).forEach { i -> document.children.add(TextElement(document, "Value: $i")) }
 
     // Table demo (spans two pages)
     val table = TableElement(document)
@@ -49,12 +50,8 @@ object ImperativeExample {
     document.children.add(table)
 
     table.border = Border(1f, 2f, 3f, 4f, Color.GREEN, Color.RED, Color.BLUE, Color.BLACK)
-//        table.backgroundColor = Color.GREEN
+    //        table.backgroundColor = Color.GREEN
 
-    document.render().use { pdDocument ->
-      pdDocument.save("output.pdf")
-    }
+    document.render().use { pdDocument -> pdDocument.save("output.pdf") }
   }
-
 }
-
