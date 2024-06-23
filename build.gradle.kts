@@ -1,6 +1,8 @@
 import org.gradle.api.tasks.wrapper.Wrapper.DistributionType.ALL
 
 plugins {
+  // ./gradlew dependencyUpdates -Drevision=release
+  id("com.github.ben-manes.versions") version Versions.benManesVersionPlugin
   `maven-publish`
   id("org.jetbrains.kotlin.jvm") version Versions.kotlin
   id("org.jetbrains.dokka") version Versions.dokka
