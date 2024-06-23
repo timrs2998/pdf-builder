@@ -47,6 +47,7 @@ abstract class Element(open val parent: Element?) {
   var fontSize: Float? = null
   var horizontalAlignment: Alignment? = null
   var fontName: FontName? = null
+  var font: PDType1Font? = null
   var wrap: Wrap? = null
 
   /**
@@ -83,7 +84,7 @@ abstract class Element(open val parent: Element?) {
   }
 
   internal val inheritedPdFont: PDType1Font by lazy {
-    fontName?.let { PDType1Font(it) } ?: parent?.inheritedPdFont ?: FALLBACK_PD_FONT
+    font ?: fontName?.let { PDType1Font(it) } ?: parent?.inheritedPdFont ?: FALLBACK_PD_FONT
   }
 
   internal val inheritedWrap: Wrap by lazy { wrap ?: parent?.wrap ?: FALLBACK_WRAP }
